@@ -78,29 +78,28 @@ router.get('/:id', (req, res) => {
     });
 });
 
+//EDIT path
+router.get('/:id/edit', (req, res) => {
+    Posts.findById(req.params.id, (err, postData) => {
+        if (err)
+            console.log(err);
+        else
+            res.render('edit.ejs', {post: postData});
+    });
+});
 
-// //EDIT path
-// router.get('/:id/edit', (req, res) => {
-//     Products.findById(req.params.id, (err, itemData) => {
-//         if (err)
-//             console.log(err);
-//         else
-//             res.render('store/edit.ejs', {item: itemData});
-//     });
-// });
-
-// //PUT method
-// router.put('/:id', (req, res) => {
-// 	Products.findByIdAndUpdate(req.params.id, req.body, {new: true}, 
-//         (err, itemData) => {
-//         if (err)
-//             console.log(err);
-//         else {
-//             console.log(`${itemData} has been updated`);
-//             res.redirect(`/store/${itemData._id}`);
-//         }
-//     });
-// });
+//PUT method
+router.put('/:id', (req, res) => {
+	Posts.findByIdAndUpdate(req.params.id, req.body, {new: true}, 
+        (err, postData) => {
+        if (err)
+            console.log(err);
+        else {
+            console.log(`${postData} has been updated`);
+            res.redirect(`/catspotting/${postData._id}`);
+        }
+    });
+});
 
 // //DELETE method
 // router.delete('/:id', (req, res) => {

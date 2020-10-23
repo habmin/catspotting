@@ -5,6 +5,7 @@
 <h3><%= post.location %></h3>
 <h4>Posted at <%= post.createdAt %></h4>
 <p><%= post.description %></p>
+<a href="/catspotting/<%= post._id %>/edit">Edit Post</a>
 <a class="go-back" href="/catspotting">Go Back</a>
 
 <%- include('./partials/footer.ejs') %>
