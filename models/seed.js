@@ -1,3 +1,8 @@
+/*******************************
+**** Cat Spotting Post Seed ****
+*******************************/
+
+//Provide 5 complete posts for database
 module.exports = [
     {
         title: "I guess he was thirsty",

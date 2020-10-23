@@ -27,12 +27,25 @@ const mongoose = require('mongoose');
 mongoose.connect(mongoURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useFindAndModify: false    
+    useFindAndModify: false,
+    useCreateIndex: true    
 });
 
 //Import Post Controller
 const postController = require('./controllers/posts.js');
 app.use('/catspotting', postController);
+
+//Initialize and use express-session
+const session = require('express-session');
+app.use(session({
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: false
+}));
+
+//Import User Controller
+const userController = require('./controllers/users.js');
+app.use('/users', userController);
 
 /******************
 **** LISTENERS ****

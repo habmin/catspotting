@@ -1,6 +1,6 @@
-/*********************
-**** Initializers ****
-*********************/
+/**************************
+**** Post Initializers ****
+**************************/
 
 //Initialize Express
 const express = require('express');
@@ -15,9 +15,9 @@ const Posts = require('../models/posts.js');
 //Import seed data
 const seed = require('../models/seed.js');
 
-/**************
-**** PATHS ****
-**************/
+/********************
+**** Posts Paths ****
+********************/
 
 //Seed Path
 router.get('/seed', (req, res) => {
@@ -48,13 +48,13 @@ router.get('/', (req, res) => {
         if (err)
             console.log(err);
         else
-            res.render('index.ejs', {posts: postsData});
+            res.render('posts/index.ejs', {posts: postsData});
     });
 });
 
 //NEW path
 router.get('/new', (req, res) => {
-    res.render('new.ejs');
+    res.render('posts/new.ejs');
 });
 
 //POST method
@@ -74,7 +74,7 @@ router.get('/:id', (req, res) => {
         if (err)
             console.log(err);
         else
-            res.render('show.ejs', {post: postData});
+            res.render('posts/show.ejs', {post: postData});
     });
 });
 
@@ -84,7 +84,7 @@ router.get('/:id/edit', (req, res) => {
         if (err)
             console.log(err);
         else
-            res.render('edit.ejs', {post: postData});
+            res.render('posts/edit.ejs', {post: postData});
     });
 });
 
@@ -112,18 +112,5 @@ router.delete('/:id', (req, res) => {
         }
     });
 });
-
-// //BUY Method Path
-// router.put('/:id/:num', (req, res) => {
-//     Products.findByIdAndUpdate(req.params.id, {qty: req.params.num}, {new: true}, 
-//         (err, itemData) => {
-//         if (err)
-//             console.log(err);
-//         else {
-//             console.log(`${itemData} has been updated`);
-//             res.redirect(`/store`);
-//         }
-//     });
-// });
 
 module.exports = router;
