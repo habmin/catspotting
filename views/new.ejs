@@ -1,0 +1,26 @@
+<%- include('./partials/header.ejs') %>
+
+<h1>New Post</h1>
+
+<form action="/catspotting" method="POST">
+    <fieldset>
+        <label for="title">Title</label>
+        <input type="text" name="title">
+    </fieldset>
+    <fieldset>
+        <label for="description">Description</label>
+        <input type="textarea" name="description">
+    </fieldset>
+    <fieldset>
+        <label for="location">Location Spotted</label>
+        <input type="text" name="location">
+    </fieldset>
+    <fieldset>
+        <label for="img">IMG source</label>
+        <input type="textarea" name="img" required>
+    </fieldset>
+    <button type="submit">Post Cat!</button>
+</form>
+<a class="go-back" href="/catspotting">Go Back</a>
+
+<%- include('./partials/footer.ejs') %>

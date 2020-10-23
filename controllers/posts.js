@@ -52,10 +52,21 @@ router.get('/', (req, res) => {
     });
 });
 
-// //NEW path
-// router.get('/new', (req, res) => {
-//     res.render('store/new.ejs');
-// });
+//NEW path
+router.get('/new', (req, res) => {
+    res.render('new.ejs');
+});
+
+//POST method
+router.post('/', (req, res) => {
+    Posts.create(req.body, (err, postData) => {
+        if (err)
+            console.log(err);
+        else
+            console.log(postData);
+    })
+    res.redirect('/catspotting');
+});
 
 // //SHOW path
 // router.get('/:id', (req, res) => {
@@ -67,16 +78,6 @@ router.get('/', (req, res) => {
 //     });
 // });
 
-// //POST method
-// router.post('/', (req, res) => {
-//     Products.create(req.body, (err, itemData) => {
-//         if (err)
-//             console.log(err);
-//         else
-//             console.log(itemData);
-//     })
-//     res.redirect('/store');
-// });
 
 // //EDIT path
 // router.get('/:id/edit', (req, res) => {

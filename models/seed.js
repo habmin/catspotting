@@ -28,11 +28,5 @@ module.exports = [
         description: "Seemed so nervous!",
         location: "Bushwick, NY",
         img: "../img/cat5.jpg"
-    },
-    {
-        title: "Just Two Guys",
-        description: "Chillin by the AC, five cats apart",
-        location: "Bushwick, NY",
-        img: "../img/cat6.jpg"
     }
 ];
