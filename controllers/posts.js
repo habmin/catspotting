@@ -68,15 +68,15 @@ router.post('/', (req, res) => {
     res.redirect('/catspotting');
 });
 
-// //SHOW path
-// router.get('/:id', (req, res) => {
-//     Products.findById(req.params.id, (err, itemData) => {
-//         if (err)
-//             console.log(err);
-//         else
-//             res.render('store/show.ejs', {item: itemData});
-//     });
-// });
+//SHOW path
+router.get('/:id', (req, res) => {
+    Posts.findById(req.params.id, (err, postData) => {
+        if (err)
+            console.log(err);
+        else
+            res.render('show.ejs', {post: postData});
+    });
+});
 
 
 // //EDIT path

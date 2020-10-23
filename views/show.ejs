@@ -1,0 +1,10 @@
+<%- include('./partials/header.ejs') %>
+
+<img src="<%= post.img %>"/>
+<h2><%=post.title %></h2>
+<h3><%= post.location %></h3>
+<h4>Posted at <%= post.createdAt %></h4>
+<p><%= post.description %></p>
+<a class="go-back" href="/catspotting">Go Back</a>
+
+<%- include('./partials/footer.ejs') %>
