@@ -32,7 +32,7 @@ mongoose.connect(mongoURI, {
 
 //Import Post Controller
 const postController = require('./controllers/posts.js');
-app.use('/store', postController);
+app.use('/catspotting', postController);
 
 /******************
 **** LISTENERS ****
