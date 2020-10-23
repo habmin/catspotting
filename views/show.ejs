@@ -6,6 +6,9 @@
 <h4>Posted at <%= post.createdAt %></h4>
 <p><%= post.description %></p>
 <a href="/catspotting/<%= post._id %>/edit">Edit Post</a>
+<form action="/catspotting/<%= post._id %>?_method=DELETE" method="POST">
+    <button type="submit">Delete Post</button>
+</form>
 <a class="go-back" href="/catspotting">Go Back</a>
 
 <%- include('./partials/footer.ejs') %>

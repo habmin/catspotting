@@ -101,17 +101,17 @@ router.put('/:id', (req, res) => {
     });
 });
 
-// //DELETE method
-// router.delete('/:id', (req, res) => {
-//     Products.findByIdAndDelete(req.params.id, (err, itemData) => {
-//         if (err)
-//             console.log(err);
-//         else {
-//             console.log(itemData.name + " has been deleted");
-//             res.redirect('/store');
-//         }
-//     });
-// });
+//DELETE method
+router.delete('/:id', (req, res) => {
+    Posts.findByIdAndDelete(req.params.id, (err, postData) => {
+        if (err)
+            console.log(err);
+        else {
+            console.log(postData.title + " has been deleted");
+            res.redirect('/catspotting');
+        }
+    });
+});
 
 // //BUY Method Path
 // router.put('/:id/:num', (req, res) => {
