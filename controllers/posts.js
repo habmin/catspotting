@@ -13,7 +13,7 @@ const mongoose = require('mongoose');
 const Posts = require('../models/posts.js');
 
 //Import seed data
-const seed = require('../models/seed.js');
+const seed = require('../models/seed-posts.js');
 
 //helper function to prove user Authenticity
 const isSignedIn = (req, res, next) => {
@@ -35,17 +35,17 @@ routerPosts.get('/seed', (req, res) => {
         else
             console.log(data);
     });
-    res.send("Seed documents added");
+    res.send(`Seed documents added tp 'posts'`);
 });
 
 //Clear database path
 routerPosts.get('/clear', (req, res) => {
-    mongoose.connection.db.dropDatabase();
+    mongoose.connection.db.dropCollection('posts');
     Posts.countDocuments({}, (err, data) => {
         if (err)
             console.log(err);
         else 
-            console.log(`There are ${data} documents in database`);
+            console.log(`There are ${data} documents in collection 'posts'`);
     });
     res.send("Database cleared");
 });
@@ -62,15 +62,16 @@ routerPosts.get('/', (req, res) => {
 
 //NEW path
 routerPosts.get('/new', (req, res) => {
-    res.render('posts/new.ejs');
+    res.render('posts/new.ejs', {currentUser: req.session.currentUser});
 });
 
 //POST method
 routerPosts.post('/', (req, res) => {
     Posts.create(req.body, (err, postData) => {
+        postData.poster = req.session.currentUser;
         if (err)
             console.log(err);
-        else
+        else 
             console.log(postData);
     })
     res.redirect('/catspotting');
@@ -82,7 +83,10 @@ routerPosts.get('/:id', (req, res) => {
         if (err)
             console.log(err);
         else
-            res.render('posts/show.ejs', {post: postData});
+            res.render('posts/show.ejs', {
+                post: postData,
+                currentUser: req.session.currentUser
+            });
     });
 });
 

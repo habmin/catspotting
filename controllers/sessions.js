@@ -16,7 +16,7 @@ sessionsRouter.post('/', (req, res) => {
         if (err) 
             console.log(err);
         else if (!foundUser) {
-            res.send('<a  href="/">Sorry, no user found </a>');
+            res.send('<a href="/">Sorry, no user found </a>');
         } 
         else {
             if (bcrypt.compareSync(req.body.password, foundUser.password)) {
