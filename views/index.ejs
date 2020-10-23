@@ -1,5 +1,11 @@
-<%- include('../partials/header.ejs') %>
+<%- include('./partials/header.ejs') %>
 
+<% for (const post of posts) { %>
+    <img src="<%= post.img %>"/>
+    <h2><%=post.title %></h2>
+    <h3><%= post.location %></h3>
+    <h4>Posted at <%= post.createdAt %></h4>
+    <p><%= post.description %></p>
+<% } %>
 
-
-<%- include('../partials/footer.ejs') %>
+<%- include('./partials/footer.ejs') %>

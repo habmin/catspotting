@@ -10,7 +10,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 
 //Import Post model
-const Post = require('../models/posts.js');
+const Posts = require('../models/posts.js');
 
 //Import seed data
 const seed = require('../models/seed.js');
@@ -21,7 +21,7 @@ const seed = require('../models/seed.js');
 
 //Seed Path
 router.get('/seed', (req, res) => {
-    Post.create(seed, (err, data) => {
+    Posts.create(seed, (err, data) => {
         if (err)
             console.log(err);
         else
@@ -33,7 +33,7 @@ router.get('/seed', (req, res) => {
 //Clear database path
 router.get('/clear', (req, res) => {
     mongoose.connection.db.dropDatabase();
-    Post.countDocuments({}, (err, data) => {
+    Posts.countDocuments({}, (err, data) => {
         if (err)
             console.log(err);
         else 
@@ -42,15 +42,15 @@ router.get('/clear', (req, res) => {
     res.send("Database cleared");
 });
 
-// //INDEX path
-// router.get('/', (req, res) => {
-//     Products.find({}, (err, productsData) => {
-//         if (err)
-//             console.log(err);
-//         else
-//             res.render('store/index.ejs', {products: productsData});
-//     });
-// });
+//INDEX path
+router.get('/', (req, res) => {
+    Posts.find({}, (err, postsData) => {
+        if (err)
+            console.log(err);
+        else
+            res.render('index.ejs', {posts: postsData});
+    });
+});
 
 // //NEW path
 // router.get('/new', (req, res) => {
