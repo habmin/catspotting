@@ -18,7 +18,7 @@ const User = require('../models/users.js');
 
 //NEW Path
 usersRouter.get('/new', (req, res) => {
-    res.send('new user path made');
+    res.render('users/new.ejs');
 });
 
 //Post Method
