@@ -1,0 +1,16 @@
+<%- include('../partials/header.ejs') %>
+
+<h1>Login page</h1>
+<form action="/sessions" method="POST">
+    <fieldset>
+        <label for="username">Username:</label>
+        <input type="text" name="username" required/>
+    </fieldset>
+    <fieldset>
+        <label for="password">Password</label>
+        <input type="password" name="password" required/>
+    </fieldset>
+    <button type="submit">Sign In</button>
+</form>
+
+<%- include('../partials/footer.ejs') %>

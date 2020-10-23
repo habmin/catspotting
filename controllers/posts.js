@@ -4,7 +4,7 @@
 
 //Initialize Express
 const express = require('express');
-const router = express.Router();
+const routerPosts = express.Router();
 
 //Initialize Mongoose
 const mongoose = require('mongoose');
@@ -15,12 +15,20 @@ const Posts = require('../models/posts.js');
 //Import seed data
 const seed = require('../models/seed.js');
 
+//helper function to prove user Authenticity
+const isSignedIn = (req, res, next) => {
+    if (req.session.currentUser)
+        return next();
+    else
+        res.redirect('sesssions/new');
+}
+
 /********************
 **** Posts Paths ****
 ********************/
 
 //Seed Path
-router.get('/seed', (req, res) => {
+routerPosts.get('/seed', (req, res) => {
     Posts.create(seed, (err, data) => {
         if (err)
             console.log(err);
@@ -31,7 +39,7 @@ router.get('/seed', (req, res) => {
 });
 
 //Clear database path
-router.get('/clear', (req, res) => {
+routerPosts.get('/clear', (req, res) => {
     mongoose.connection.db.dropDatabase();
     Posts.countDocuments({}, (err, data) => {
         if (err)
@@ -43,7 +51,7 @@ router.get('/clear', (req, res) => {
 });
 
 //INDEX path
-router.get('/', (req, res) => {
+routerPosts.get('/', (req, res) => {
     Posts.find({}, (err, postsData) => {
         if (err)
             console.log(err);
@@ -53,12 +61,12 @@ router.get('/', (req, res) => {
 });
 
 //NEW path
-router.get('/new', (req, res) => {
+routerPosts.get('/new', (req, res) => {
     res.render('posts/new.ejs');
 });
 
 //POST method
-router.post('/', (req, res) => {
+routerPosts.post('/', (req, res) => {
     Posts.create(req.body, (err, postData) => {
         if (err)
             console.log(err);
@@ -69,7 +77,7 @@ router.post('/', (req, res) => {
 });
 
 //SHOW path
-router.get('/:id', (req, res) => {
+routerPosts.get('/:id', (req, res) => {
     Posts.findById(req.params.id, (err, postData) => {
         if (err)
             console.log(err);
@@ -79,7 +87,7 @@ router.get('/:id', (req, res) => {
 });
 
 //EDIT path
-router.get('/:id/edit', (req, res) => {
+routerPosts.get('/:id/edit', (req, res) => {
     Posts.findById(req.params.id, (err, postData) => {
         if (err)
             console.log(err);
@@ -89,7 +97,7 @@ router.get('/:id/edit', (req, res) => {
 });
 
 //PUT method
-router.put('/:id', (req, res) => {
+routerPosts.put('/:id', (req, res) => {
 	Posts.findByIdAndUpdate(req.params.id, req.body, {new: true}, 
         (err, postData) => {
         if (err)
@@ -102,7 +110,7 @@ router.put('/:id', (req, res) => {
 });
 
 //DELETE method
-router.delete('/:id', (req, res) => {
+routerPosts.delete('/:id', (req, res) => {
     Posts.findByIdAndDelete(req.params.id, (err, postData) => {
         if (err)
             console.log(err);
@@ -113,4 +121,4 @@ router.delete('/:id', (req, res) => {
     });
 });
 
-module.exports = router;
+module.exports = routerPosts;

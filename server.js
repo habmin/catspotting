@@ -31,9 +31,6 @@ mongoose.connect(mongoURI, {
     useCreateIndex: true    
 });
 
-//Import Post Controller
-const postController = require('./controllers/posts.js');
-app.use('/catspotting', postController);
 
 //Initialize and use express-session
 const session = require('express-session');
@@ -43,9 +40,16 @@ app.use(session({
     saveUninitialized: false
 }));
 
+//Import Post Controller
+const postController = require('./controllers/posts.js');
+app.use('/catspotting', postController);
+
 //Import User Controller
 const userController = require('./controllers/users.js');
 app.use('/users', userController);
+
+const sessionsController = require('./controllers/sessions.js')
+app.use('/sessions', sessionsController)
 
 /******************
 **** LISTENERS ****
