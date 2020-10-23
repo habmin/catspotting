@@ -80,13 +80,15 @@ routerPosts.post('/', (req, res) => {
 //SHOW path
 routerPosts.get('/:id', (req, res) => {
     Posts.findById(req.params.id, (err, postData) => {
+        console.log(req.session.currentUser);
         if (err)
             console.log(err);
-        else
+        else {
             res.render('posts/show.ejs', {
                 post: postData,
                 currentUser: req.session.currentUser
             });
+        }
     });
 });
 

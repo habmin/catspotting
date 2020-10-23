@@ -7,7 +7,8 @@ const sessionsRouter = express.Router()
 const User = require('../models/users.js')
 const bcrypt = require('bcrypt');
 
-sessionsRouter.get('/new', (req, res) => {
+//NEW path (login)
+sessionsRouter.get('/login', (req, res) => {
     res.render('sessions/new.ejs', { currentUser: req.session.currentUser })
 });
 

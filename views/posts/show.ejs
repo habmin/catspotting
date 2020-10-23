@@ -5,7 +5,7 @@
 <h3><%= post.location %></h3>
 <h4>Posted by <%= post.poster %> at <%= post.createdAt %></h4>
 <p><%= post.description %></p>
-<% if (currentUser === post.poster) { %>
+<% if (currentUser.username === post.poster) { %>
     <a href="/catspotting/<%= post._id %>/edit">Edit Post</a>
     <form action="/catspotting/<%= post._id %>?_method=DELETE" method="POST">
         <button type="submit">Delete Post</button>
