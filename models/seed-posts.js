@@ -35,7 +35,7 @@ module.exports = [
     {
         title: "Stairwell Kitten",
         description: "Seemed so nervous!",
-        location: "Bushwick, NY",
+        location: "Flatbush, NY",
         img: "../img/cat5.jpg",
         poster: "Anosha"
     }

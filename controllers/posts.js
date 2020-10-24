@@ -20,8 +20,8 @@ const isSignedIn = (req, res, next) => {
     if (req.session.currentUser)
         return next();
     else
-        res.redirect('sessions/login');
-}
+        res.redirect('/sessions/login');
+};
 
 /********************
 **** Posts Paths ****
@@ -55,20 +55,23 @@ routerPosts.get('/', (req, res) => {
     Posts.find({}, (err, postsData) => {
         if (err)
             console.log(err);
-        else
-            res.render('posts/index.ejs', {posts: postsData});
+        else {
+            res.render('posts/index.ejs', {
+                posts: postsData,
+                currentUser: req.session.currentUser
+            });
+        }
     });
 });
 
 //NEW path
-routerPosts.get('/new', (req, res) => {
+routerPosts.get('/new', isSignedIn, (req, res) => {
     res.render('posts/new.ejs', {currentUser: req.session.currentUser});
 });
 
 //POST method
 routerPosts.post('/', (req, res) => {
     Posts.create(req.body, (err, postData) => {
-        console.log(req.session.currentUser.username);
         if (err)
             console.log(err);
         else {
@@ -100,12 +103,20 @@ routerPosts.get('/:id', (req, res) => {
 });
 
 //EDIT path
-routerPosts.get('/:id/edit', (req, res) => {
+routerPosts.get('/:id/edit', isSignedIn, (req, res) => {
     Posts.findById(req.params.id, (err, postData) => {
         if (err)
             console.log(err);
-        else
-            res.render('posts/edit.ejs', {post: postData});
+        else {
+            if (postData.poster === req.session.currentUser.username) {
+                res.render('posts/edit.ejs', {
+                    post: postData,
+                    currentUser: req.session.currentUser
+                });
+            }
+            else
+                res.send('Unauthorized Access');
+        }
     });
 });
 
@@ -123,13 +134,22 @@ routerPosts.put('/:id', (req, res) => {
 });
 
 //DELETE method
-routerPosts.delete('/:id', (req, res) => {
-    Posts.findByIdAndDelete(req.params.id, (err, postData) => {
+routerPosts.delete('/:id', isSignedIn, (req, res) => {
+    Posts.findById(req.params.id, (err, postData) => {
         if (err)
             console.log(err);
+        else if (postData.poster === req.session.currentUser.username) {
+            Posts.findByIdAndDelete(req.params.id, (err, postData) => {
+                if (err)
+                    console.log(err);
+                else {
+                    console.log(postData.title + " has been deleted");
+                    res.redirect('/catspotting');
+                }
+            });
+        }
         else {
-            console.log(postData.title + " has been deleted");
-            res.redirect('/catspotting');
+            res.send('Unauthorized Access');
         }
     });
 });
