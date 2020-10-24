@@ -66,7 +66,10 @@ routerPosts.get('/', (req, res) => {
 
 //NEW path
 routerPosts.get('/new', isSignedIn, (req, res) => {
-    res.render('posts/new.ejs', {currentUser: req.session.currentUser});
+    res.render('posts/new.ejs', {
+        currentUser: req.session.currentUser,
+        API_KEY: process.env.API_KEY
+    });
 });
 
 //POST method

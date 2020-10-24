@@ -65,7 +65,7 @@ usersRouter.post('/', (req, res) => {
                     console.log(err);
                 else {
                     console.log('user ', createdUser.username, ' created');
-                    res.redirect('/');
+                    res.redirect('/sessions/login');
                 }
             });
         }

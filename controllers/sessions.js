@@ -9,7 +9,7 @@ const bcrypt = require('bcrypt');
 
 //NEW path (login)
 sessionsRouter.get('/login', (req, res) => {
-    res.render('sessions/new.ejs', { currentUser: req.session.currentUser })
+    res.render('sessions/new.ejs', {currentUser: req.session.currentUser});
 });
 
 sessionsRouter.post('/', (req, res) => {

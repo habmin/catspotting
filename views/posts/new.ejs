@@ -22,5 +22,64 @@
     <button type="submit">Post Cat!</button>
 </form>
 <a class="go-back" href="/catspotting">Go Back</a>
+<div id="map"></div>
+<form>
+    <input id="address" type="text" value="enter address here"/>
+    <input id="address-submit" type="button" value="Find location"/>
+</form>
+
+<script type="text/javascript">
+    function initMap() {
+        const myLatlng = { lat: 39.34, lng: -99.14 };
+        const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 4,
+            center: myLatlng
+        });
+        const geocoder = new google.maps.Geocoder();
+        document.getElementById('address-submit').addEventListener('click', () => {
+            geocodeAddress(geocoder, map);
+        });
+        // Create the initial InfoWindow.
+        let infoWindow = new google.maps.InfoWindow({
+            content: "Click the map to get Lat/Lng!",
+            position: myLatlng
+        });
+        infoWindow.open(map);
+        // Configure the click listener.
+        map.addListener("click", (mapsMouseEvent) => {
+            // Close the current InfoWindow.
+            infoWindow.close();
+            // Create a new InfoWindow.
+            infoWindow = new google.maps.InfoWindow({
+                position: mapsMouseEvent.latLng,
+            });
+            console.log(mapsMouseEvent.latLng.toJSON());
+            infoWindow.setContent(
+                JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
+            );
+            infoWindow.open(map);
+        });
+        const geocodeAddress = (geocoder, resultsMap) => {
+            const address = document.getElementById('address').value;
+            geocoder.geocode({address: address}, (results, status) => {
+                if (status === 'OK') {
+                    infoWindow.close();
+                    resultsMap.setCenter(results[0].geometry.location);
+                    infoWindow = new google.maps.InfoWindow({
+                        map: resultsMap,
+                        position: results[0].geometry.location
+                    });
+                    console.log(results[0].geometry.location.toJSON());
+                    infoWindow.setContent(
+                        JSON.stringify(results[0].geometry.location.toJSON(), null, 2)
+                    );
+                    infoWindow.open(map);
+                }      
+            });
+        };
+    };
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= API_KEY %>&callback=initMap"></script>
 
 <%- include('../partials/footer.ejs') %>
