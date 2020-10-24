@@ -47,7 +47,10 @@ usersRouter.get('/clear', (req, res) => {
 
 //NEW Path
 usersRouter.get('/new', (req, res) => {
-    res.render('users/new.ejs', {currentUser: req.session.currentUser});
+    if (req.session.currentUser)
+        res.send('Please sign out before creating a new user');
+    else
+        res.render('users/new.ejs', {currentUser: req.session.currentUser});
 });
 
 //Post Method
