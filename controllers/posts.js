@@ -20,7 +20,7 @@ const isSignedIn = (req, res, next) => {
     if (req.session.currentUser)
         return next();
     else
-        res.redirect('sesssions/new');
+        res.redirect('sessions/login');
 }
 
 /********************
@@ -35,7 +35,7 @@ routerPosts.get('/seed', (req, res) => {
         else
             console.log(data);
     });
-    res.send(`Seed documents added tp 'posts'`);
+    res.send(`Seed documents added to 'posts'`);
 });
 
 //Clear database path
@@ -68,19 +68,26 @@ routerPosts.get('/new', (req, res) => {
 //POST method
 routerPosts.post('/', (req, res) => {
     Posts.create(req.body, (err, postData) => {
-        postData.poster = req.session.currentUser;
+        console.log(req.session.currentUser.username);
         if (err)
             console.log(err);
-        else 
-            console.log(postData);
-    })
+        else {
+            Posts.findByIdAndUpdate(postData._id, {
+                poster: `${req.session.currentUser.username}`
+            }, (err, editedPostData) => {
+                if (err)
+                    console.log(err);
+                else
+                    console.log(editedPostData);
+            });
+        }
+    });
     res.redirect('/catspotting');
 });
 
 //SHOW path
 routerPosts.get('/:id', (req, res) => {
     Posts.findById(req.params.id, (err, postData) => {
-        console.log(req.session.currentUser);
         if (err)
             console.log(err);
         else {
