@@ -55,14 +55,21 @@ usersRouter.get('/new', (req, res) => {
 
 //Post Method
 usersRouter.post('/', (req, res) => {
-    req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10))
-    Users.create(req.body, (err, createdUser) => {
-        if (err)
-            console.log(err)
-        else
-            console.log('user is created', createdUser);
-        res.redirect('/');
-    });
+    Users.find({username: `${req.body.username}`}, (err, results) => {
+        if (results.length)
+            res.send('Username already taken');
+        else {
+            req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10))
+            Users.create(req.body, (err, createdUser) => {
+                if (err)
+                    console.log(err);
+                else {
+                    console.log('user ', createdUser.username, ' created');
+                    res.redirect('/');
+                }
+            });
+        }
+    }).collation({locale: 'en', strength: 2});
 });
 
 module.exports = usersRouter;
