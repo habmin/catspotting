@@ -15,6 +15,10 @@ const Posts = require('../models/posts.js');
 //Import seed data
 const seed = require('../models/seed-posts.js');
 
+//Import date date
+const months = require('../models/months.js');
+const days = require('../models/days.js');
+
 //helper function to prove user Authenticity
 const isSignedIn = (req, res, next) => {
     if (req.session.currentUser)
@@ -58,7 +62,9 @@ routerPosts.get('/', (req, res) => {
         else {
             res.render('posts/index.ejs', {
                 posts: postsData,
-                currentUser: req.session.currentUser
+                currentUser: req.session.currentUser,
+                days: days,
+                months: months
             });
         }
     });
@@ -79,7 +85,7 @@ routerPosts.post('/', (req, res) => {
         req.body.title = "Untitled";
     if (req.body.location === '')
         req.body.location = "Unlisted";
-    //Append 'poster' property to req.body
+    //Append poster property to req.body
     req.body.poster = `${req.session.currentUser.username}`;
     Posts.create(req.body, (err, postData) => {
         if (err)
@@ -99,7 +105,9 @@ routerPosts.get('/:id', (req, res) => {
             res.render('posts/show.ejs', {
                 post: postData,
                 currentUser: req.session.currentUser,
-                API_KEY: process.env.API_KEY
+                API_KEY: process.env.API_KEY,
+                days: days,
+                months: months
             });
         }
     });
