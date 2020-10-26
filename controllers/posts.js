@@ -99,7 +99,8 @@ routerPosts.get('/:id', (req, res) => {
         else {
             res.render('posts/show.ejs', {
                 post: postData,
-                currentUser: req.session.currentUser
+                currentUser: req.session.currentUser,
+                API_KEY: process.env.API_KEY
             });
         }
     });

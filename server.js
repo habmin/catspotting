@@ -31,7 +31,6 @@ mongoose.connect(mongoURI, {
     useCreateIndex: true    
 });
 
-
 //Initialize and use express-session
 const session = require('express-session');
 app.use(session({

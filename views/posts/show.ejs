@@ -3,6 +3,9 @@
 <img src="<%= post.img %>"/>
 <h2><%=post.title %></h2>
 <h3><%= post.location %></h3>
+<% if (post.latitude !== undefined && post.longitude !== undefined) { %>
+    <div id="show-map"></div>
+<% } %>
 <h4>Posted by <%= post.poster %> at <%= post.createdAt %></h4>
 <p><%= post.description %></p>
 <% if (currentUser && currentUser.username === post.poster) { %>
@@ -13,4 +16,21 @@
 <% } %>
 <a class="go-back" href="/catspotting">Go Back</a>
 
+<script type="text/javascript">
+    function initMap() {
+        //Google Map initializer
+        const myLatlng = { lat: <%= post.latitude %>, lng: <%= post.longitude %> };
+        const map = new google.maps.Map(document.getElementById("show-map"), {
+            gestureHandling: "none",
+            zoom: 15,
+            center: myLatlng
+        });
+        let marker = new google.maps.Marker({
+            position: myLatlng
+        })
+        marker.setMap(map);
+    };
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= API_KEY %>&callback=initMap"></script>
 <%- include('../partials/footer.ejs') %>
