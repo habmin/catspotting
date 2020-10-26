@@ -9,7 +9,9 @@ const postSchema = new mongoose.Schema({
 	description: String,
     location: {type: String, default: "Unknown"},
     img: {type: String, required: true},
-    poster: {type: String, default:"***ERROR***"}
+    poster: {type: String, default:"***ERROR***"},
+    latitude: Number,
+    longitude: Number
 }, {timestamps: true});
 
 module.exports = mongoose.model('Post', postSchema);
