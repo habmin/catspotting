@@ -3,7 +3,7 @@
 <img src="<%= post.img %>"/>
 <h2><%=post.title %></h2>
 <h3><%= post.location %></h3>
-<% if (post.latitude !== undefined && post.longitude !== undefined) { %>
+<% if (post.latitude !== null && post.longitude !== null) { %>
     <div id="show-map"></div>
 <% } %>
 <h4>Posted by <%= post.poster %> at <%= post.createdAt %></h4>

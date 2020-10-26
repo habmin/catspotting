@@ -74,19 +74,18 @@ routerPosts.get('/new', isSignedIn, (req, res) => {
 
 //POST method
 routerPosts.post('/', (req, res) => {
+    //Manually create default values for title and location if empty strings
+    if (req.body.title === '')
+        req.body.title = "Untitled";
+    if (req.body.location === '')
+        req.body.location = "Unlisted";
+    //Append 'poster' property to req.body
+    req.body.poster = `${req.session.currentUser.username}`;
     Posts.create(req.body, (err, postData) => {
         if (err)
             console.log(err);
-        else {
-            Posts.findByIdAndUpdate(postData._id, {
-                poster: `${req.session.currentUser.username}`
-            }, (err, editedPostData) => {
-                if (err)
-                    console.log(err);
-                else
-                    console.log(editedPostData);
-            });
-        }
+        else
+            console.log(postData);
     });
     res.redirect('/catspotting');
 });

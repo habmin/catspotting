@@ -5,13 +5,13 @@
 const mongoose = require('mongoose');
 
 const postSchema = new mongoose.Schema({
-	title: {type: String, default: "Untitled"},
+	title: String,
 	description: String,
-    location: {type: String, default: "Unlisted"},
+    location: String,
     img: {type: String, required: true},
-    poster: {type: String, default:"***ERROR***"},
-    latitude: {type: Number, default: undefined},
-    longitude: {type: Number, default: undefined}
+    poster: String,
+    latitude: Number,
+    longitude: Number
 }, {timestamps: true});
 
 module.exports = mongoose.model('Post', postSchema);
