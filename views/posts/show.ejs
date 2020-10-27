@@ -15,7 +15,7 @@
         <div class="modify-buttons">
             <a href="/catspotting/<%= post._id %>/edit"><button type="button">Edit Post</button></a>
             <form action="/catspotting/<%= post._id %>?_method=DELETE" method="POST">
-                <button type="submit">Delete Post</button>
+                <button id="delete-button" type="submit">Delete Post</button>
             </form>
         </div>
     <% } %>
@@ -35,6 +35,37 @@
         })
         marker.setMap(map);
     };
+    $(() => {
+        $("#delete-button").on('click', () => {
+            Swal.fire({
+                title: "Are you sure you want to delete this post?",
+                text: "This cannot be undone",
+                showCancelButton: true,
+                confirmButtonText: "Delete Post",
+                cancelButtonText: "Cancel Delete",
+
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire();
+
+                }
+            });
+        });
+    });
+    Swal.fire({
+  title: 'Do you want to save the changes?',
+  showDenyButton: true,
+  showCancelButton: true,
+  confirmButtonText: `Save`,
+  denyButtonText: `Don't save`,
+}).then((result) => {
+  /* Read more about isConfirmed, isDenied below */
+  if (result.isConfirmed) {
+    Swal.fire('Saved!', '', 'success')
+  } else if (result.isDenied) {
+    Swal.fire('Changes are not saved', '', 'info')
+  }
+})
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= API_KEY %>&callback=showMap"></script>
 
