@@ -20,7 +20,7 @@ body {
     width: 100%;
 }
 
-.post-title {
+.post-title, #new-title {
     text-align: center;
     font-family: 'Fugaz One', cursive;
     font-size: 50px;
@@ -30,10 +30,20 @@ body {
     margin: 0;
 }
 
+#submit-post {
+    font-size: 30px;
+    padding: 0 20px 0 20px;
+}
+
+.modify-submit {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
 a {
     text-decoration: none;
 }
-
 
 #filter {
     background-color: rgba(85, 83, 88, .45);
@@ -66,7 +76,7 @@ a {
     text-align: center;
 }
 
-.post {
+.post, #edit, #new-post {
     border: 10px solid #BC6C25;
     border-radius: 10px;
     margin: 30px auto;
@@ -121,6 +131,9 @@ button {
     padding: 0;
 }
 
+fieldset {
+    border: none;
+}
 
 .menu-contents {
     display: flex;

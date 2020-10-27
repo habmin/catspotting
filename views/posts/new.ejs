@@ -3,33 +3,34 @@
 <script async defer src="/js/new-post.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= API_KEY %>&callback=initMap"></script>
 
-<h1>New Post</h1>
-<p>From user <%= currentUser.username %></p>
-<form action="/catspotting" method="POST">
+<h1 id="new-title">New Post</h1>
+<form id="new-post" action="/catspotting" method="POST">
     <fieldset>
         <label for="title">Title</label>
         <input type="text" name="title"/>
     </fieldset>
     <fieldset>
         <label for="description">Description</label>
-        <input type="textarea" name="description"/>
+        <textarea name="description"></textarea>
     </fieldset>
     <fieldset>
         <label for="location">Location Spotted</label>
         <input id="location" type="text" name="location"/>
-        <input id="address-submit" type="button" value="Pin On Map"/>
+        <button id="address-submit" type="button">Pin On Map</button>
+        <div id="map"></div>
         <label for="latitude">Latitude</label>
         <input id="lat" type="text" name="latitude" READONLY/>
         <label for="longitude">Longitude</label>
         <input id="lng" type="text" name="longitude" READONLY/>
-        <div id="map"></div>
     </fieldset>
     <fieldset>
         <label for="img">IMG source</label>
-        <input type="textarea" name="img" required>
+        <input type="text" name="img" required>
     </fieldset>
-    <button id="submit-post" type="submit">Post Cat!</button>
+    <div class="modify-submit">
+        <button id="submit-post" type="submit">Post Cat!</button>
+        <a class="go-back" href="/catspotting">Go Back</a>
+    </div>
 </form>
-<a class="go-back" href="/catspotting">Go Back</a>
 
 <%- include('../partials/footer.ejs') %>

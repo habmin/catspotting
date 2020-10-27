@@ -1,6 +1,6 @@
 <%- include('../partials/header.ejs') %>
 
-<form action="/catspotting/<%= post._id %>?_method=PUT" method="POST">
+<form id="edit" action="/catspotting/<%= post._id %>?_method=PUT" method="POST">
     <fieldset>
         <label for="title">Title</label>
         <input type="text" name="title" value="<%= post.title %>" required>
@@ -17,9 +17,11 @@
         <label for="img">IMG source</label>
         <input type="text" name="img" value="<%= post.img %>" required>
     </fieldset>
-    <button type="submit">Edit Post</button>
+    <div class="modify-submit">
+        <button id="submit-post" type="submit">Edit Post</button>
+        <a class="go-back" href="/catspotting/<%= post._id %>">Go Back</a>
+    </div>
 </form>
 
-<a class="go-back" href="/catspotting/<%= post._id %>">Go Back</a>
 
 <%- include('../partials/footer.ejs') %>
