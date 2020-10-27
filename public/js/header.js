@@ -8,7 +8,5 @@ $(() => {
             $('.drop-arrow').text('▾');
         else
         $('.drop-arrow').text('▸');
-
     });
-    
 });

@@ -1,9 +1,51 @@
 body {
+    background-image: url('../img/background-texture.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    margin: 0 auto;
+    font-family: 'Corben', cursive;
 }
 
-img {
-    width: 45%;
+nav {
+    background-color: rgba(188, 108, 43, 0.79);
 }
+
+h1 {
+    text-align: center;
+    font-family: 'Fugaz One', cursive;
+    font-size: 90px;
+    text-shadow: 7px 7px 0 #BC6C25,
+                 14px 14px 0 black;
+    color: #FEFAE0;
+    margin: 0;
+}
+
+h2 {
+    text-align: center;
+    font-family: 'Fugaz One', cursive;
+    font-size: 50px;
+    text-shadow: 4px 4px 0 #FEFAE0,
+                 8px 8px 0 #BC6C25;
+    color: black;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+#filter {
+    background-color: rgba(85, 83, 88, .45);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: -1;
+    left: 0;
+    top: 0;
+}
+
+
 /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
 #map {
@@ -23,13 +65,24 @@ img {
     text-align: center;
 }
 
+.post {
+    border: 10px solid #BC6C25;
+    border-radius: 10px;
+    margin: 30px auto;
+    padding: 10px;
+    max-width: 800px;
+    width: 90%;
+    background-color: #FEFAE0;
+
+}
+
+.post-cat {
+    width: 50%;
+}
+
 .drop-menu {
-    width: 300px;
-    position: absolute;
-    left: 0;
-    top: 0;
     margin: 0;
-    padding: 0;
+    position: absolute;
 }
 
 .drop-menu h3{
@@ -37,8 +90,13 @@ img {
     padding: 0;
 }
 
+.menu-contents {
+    display: flex;
+    flex-direction: column;
+}
+
 .ui-accordion-header {
-    background-color: #DDA15E;
+
 }
 
 .ui-accordion-content {
