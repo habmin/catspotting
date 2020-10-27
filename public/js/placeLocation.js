@@ -6,13 +6,16 @@ function initMap() {
         zoom: 4,
         center: myLatlng
     });
-    let latDisplay = document.getElementById("lat");
-    let lngDisplay = document.getElementById("lng");
-    
     let marker = new google.maps.Marker({
         position: myLatlng
     })
     marker.setMap(map);
+    mapListeners(map, marker);
+};
+
+function mapListeners(map, marker) {
+    let latDisplay = document.getElementById("lat");
+    let lngDisplay = document.getElementById("lng");
     const geocoder = new google.maps.Geocoder();
 
     //Click on map listener
@@ -32,7 +35,6 @@ function initMap() {
                     }
                 }
             });
-        
     });
 
     //Geocoder text input listener

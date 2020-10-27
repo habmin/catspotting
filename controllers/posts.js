@@ -70,6 +70,22 @@ routerPosts.get('/', (req, res) => {
     });
 });
 
+//INDEX path for maps
+routerPosts.get('/map', (req, res) => {
+    Posts.find({}, (err, postsData) => {
+        if (err)
+            console.log(err);
+        else {
+            res.render('posts/map.ejs', {
+                posts: postsData,
+                currentUser: req.session.currentUser,
+                days: days,
+                months: months
+            });
+        }
+    });
+});
+
 //NEW path
 routerPosts.get('/new', isSignedIn, (req, res) => {
     res.render('posts/new.ejs', {
@@ -122,7 +138,8 @@ routerPosts.get('/:id/edit', isSignedIn, (req, res) => {
             if (postData.poster === req.session.currentUser.username) {
                 res.render('posts/edit.ejs', {
                     post: postData,
-                    currentUser: req.session.currentUser
+                    currentUser: req.session.currentUser,
+                    API_KEY: process.env.API_KEY
                 });
             }
             else

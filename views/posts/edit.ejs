@@ -1,17 +1,24 @@
 <%- include('../partials/header.ejs') %>
 
+<script src="/js/placeLocation.js"></script>
 <form id="edit" action="/catspotting/<%= post._id %>?_method=PUT" method="POST">
     <fieldset>
         <label for="title">Title</label>
         <input type="text" name="title" value="<%= post.title %>" required>
     </fieldset>
     <fieldset>
-        <label for="location">Location</label>
-        <input type="text" name="location" value="<%= post.location %>" required>
+        <label for="location">Location Spotted</label>
+        <input id="location" type="text" name="location" value="<%= post.location %>"/>
+        <button id="address-submit" type="button">Pin On Map</button>
+        <div id="map"></div>
+        <label for="latitude">Latitude</label>
+        <input id="lat" type="text" name="latitude" value="<%= post.latitude %>" READONLY/>
+        <label for="longitude">Longitude</label>
+        <input id="lng" type="text" name="longitude" value="<%= post.longitude %>" READONLY/>
     </fieldset>
     <fieldset>
         <label for="description">Description</label>
-        <input type="textarea" name="description" value="<%= post.description %>">
+        <textarea name="description"><%= post.description %></textarea>
     </fieldset>
     <fieldset>
         <label for="img">IMG source</label>
@@ -23,5 +30,24 @@
     </div>
 </form>
 
+
+<script type="text/javascript">
+    function showMap() {
+        //Google Map initializer
+        const myLatlng = { lat: <%= post.latitude %>, lng: <%= post.longitude %> };
+        const map = new google.maps.Map(document.getElementById("map"), {
+            gestureHandling: "greedy",
+            zoom: 13,
+            center: myLatlng
+        });
+        let marker = new google.maps.Marker({
+            position: myLatlng
+        })
+        marker.setMap(map);
+        mapListeners(map, marker);
+    };
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= API_KEY %>&callback=showMap"></script>
 
 <%- include('../partials/footer.ejs') %>
