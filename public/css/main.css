@@ -6,11 +6,8 @@ body {
     font-family: 'Corben', cursive;
 }
 
-nav {
+#title {
     background-color: rgba(188, 108, 43, 0.79);
-}
-
-h1 {
     text-align: center;
     font-family: 'Fugaz One', cursive;
     font-size: 90px;
@@ -18,9 +15,12 @@ h1 {
                  14px 14px 0 black;
     color: #FEFAE0;
     margin: 0;
+    text-align: center;
+    padding: 3px 0px 15px 0px;
+    width: 100%;
 }
 
-h2 {
+#post-title {
     text-align: center;
     font-family: 'Fugaz One', cursive;
     font-size: 50px;
@@ -81,14 +81,36 @@ a {
 }
 
 .drop-menu {
+    text-align: left;
+    font-family: 'Assistant', sans-serif;
+    color: #FEFAE0;
+    text-shadow: 1px 1px 0 #BC6C25,
+                 2px 2px 0 black;
     margin: 0;
     position: absolute;
+    top: 125px;
+    cursor: pointer;
+}
+
+button {
+    border: 5px solid #BC6C25;
+    background-color: #FEFAE0;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 5px;
+    font-family: 'Corben', cursive;
+    cursor: pointer;
+}
+
+.drop-menu button {
+    width: 90%;
 }
 
 .drop-menu h3{
     margin: 0;
     padding: 0;
 }
+
 
 .menu-contents {
     display: flex;
@@ -100,6 +122,7 @@ a {
 }
 
 .ui-accordion-content {
+    box-shadow: 1px 10px 20px #6d6d6d;
     margin: 0;
     padding: 0;
     background-color: #DDA15E;

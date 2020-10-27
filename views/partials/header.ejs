@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>🐱Cat Spotting🐱</title>
+        <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;600&display=swap" rel="stylesheet"> 
         <link href="https://fonts.googleapis.com/css2?family=Corben&display=swap" rel="stylesheet"> 
         <link href="https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap" rel="stylesheet">
         <script
@@ -15,13 +16,14 @@
     </head>
     <body>
         <div id="filter"></div>
+        <a href="/catspotting"><h1 id="title">Catspotting</h1></a>
         <nav>
             <% if (currentUser) { %>
                 <div class="drop-menu">
                     <h3><span class="drop-arrow">▸</span>Welcome <%= currentUser.username %>!</h3>
                     <div class="menu-contents">
                         <a href="/catspotting">Profile</a>
-                        <a href="/catspotting/new">New Post</a>
+                        <a href="/catspotting/new"><button type="button'">New Post</button></a>
                         <form action="/sessions?_method=DELETE" method="POST">
                             <button type="submit" value="Log Out">Log Out</button>
                         </form>
@@ -31,10 +33,9 @@
                 <div class="drop-menu">
                     <h3><span class="drop-arrow">▸</span>Welcome Guest!</h3>
                     <div class="menu-contents">
-                        <a href="/users/new">Sign Up</a>
-                        <a href="/sessions/login">Log In</a>
+                        <a href="/users/new"><button type="button">Sign Up</button></a>
+                        <a href="/sessions/login"><button type="button">Log In</button></a>
                     </div>  
                 </div>
             <% } %>
-            <h1 text-align="center">Catspotting</h1>
         </nav>
