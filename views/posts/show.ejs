@@ -14,13 +14,14 @@
     <% if (currentUser && currentUser.username === post.poster) { %>
         <div class="modify-buttons">
             <a href="/catspotting/<%= post._id %>/edit"><button type="button">Edit Post</button></a>
-            <form action="/catspotting/<%= post._id %>?_method=DELETE" method="POST">
+            <form id="delete-form" action="/catspotting/<%= post._id %>?_method=DELETE" method="POST" onsubmit="return confirm('Are you sure you want to delete? This cannot be undone')">
                 <button id="delete-button" type="submit">Delete Post</button>
             </form>
         </div>
     <% } %>
     <a class="go-back" href="/catspotting">Go Back</a>
 </div>
+
 <script type="text/javascript">
     function showMap() {
         //Google Map initializer
@@ -35,24 +36,8 @@
         })
         marker.setMap(map);
     };
-    $(() => {
-        $("#delete-button").on('click', () => {
-            Swal.fire({
-                title: "Are you sure you want to delete this post?",
-                text: "This cannot be undone",
-                showCancelButton: true,
-                confirmButtonText: "Delete Post",
-                cancelButtonText: "Cancel Delete",
-
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire();
-
-                }
-            });
-        });
-    });
 </script>
+
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= API_KEY %>&callback=showMap"></script>
 
 <%- include('../partials/footer.ejs') %>
