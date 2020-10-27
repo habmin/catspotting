@@ -1,22 +1,23 @@
 <%- include('../partials/header.ejs') %>
 
 <div class="post">
-    <h2><%=post.title %></h2>
-    <h4>From <%= post.poster %></h4>
-    <h4><%= days[post.createdAt.getUTCDay()] %> <%= months[post.createdAt.getUTCMonth()] %> 
+    <h2 class="post-title"><%=post.title %></h2>
+    <h4>Spotted by <%= post.poster %> on <%= days[post.createdAt.getUTCDay()] %> <%= months[post.createdAt.getUTCMonth()] %> 
         <%= post.createdAt.getUTCDate() %> <%= post.createdAt.getUTCFullYear() %> 
         <%= post.createdAt.getUTCHours() - (post.createdAt.getTimezoneOffset() / 60) %>:<%= post.createdAt.getUTCMinutes() %></h4>
     <img class="full-cat" src="<%= post.img %>"/>
-    <h3><%= post.location %></h3>
+    <p class="description"><%= post.description %></p>
     <% if (post.latitude !== null && post.longitude !== null && post.location !== "Unlisted") { %>
         <div id="show-map"></div>
-        <% } %>
-    <p><%= post.description %></p>
+    <% } %>
+    <h3>Spotted in <%= post.location %></h3>
     <% if (currentUser && currentUser.username === post.poster) { %>
-        <a href="/catspotting/<%= post._id %>/edit">Edit Post</a>
-        <form action="/catspotting/<%= post._id %>?_method=DELETE" method="POST">
-            <button type="submit">Delete Post</button>
-        </form>
+        <div class="modify-buttons">
+            <a href="/catspotting/<%= post._id %>/edit"><button type="button">Edit Post</button></a>
+            <form action="/catspotting/<%= post._id %>?_method=DELETE" method="POST">
+                <button type="submit">Delete Post</button>
+            </form>
+        </div>
     <% } %>
     <a class="go-back" href="/catspotting">Go Back</a>
 </div>
@@ -26,7 +27,7 @@
         const myLatlng = { lat: <%= post.latitude %>, lng: <%= post.longitude %> };
         const map = new google.maps.Map(document.getElementById("show-map"), {
             gestureHandling: "none",
-            zoom: 15,
+            zoom: 13,
             center: myLatlng
         });
         let marker = new google.maps.Marker({

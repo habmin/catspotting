@@ -4,10 +4,10 @@
     <% for (const post of posts) { %>
         <div class="post">
             <img class="post-cat" src="<%= post.img %>"/>
-            <a href="/catspotting/<%= post._id %>"><h2 id="post-title"><%=post.title %></h2></a>
-            <h3><%= post.location %></h3>
-            <h4>Posted at <%= post.createdAt %></h4>
-            <p><%= post.description %></p>
+            <a class="post-link" href="/catspotting/<%= post._id %>"><h2 class="post-title"><%=post.title %></h2>
+            <h3>Spotted in <%= post.location %> by <%= post.poster %></h3></a>
+            <p class="post-date"><%= months[post.createdAt.getUTCMonth()] %> 
+                <%= post.createdAt.getUTCDate() %> <%= post.createdAt.getUTCFullYear() %></p>
         </div>
     <% } %>
 </div>
