@@ -83,7 +83,8 @@ routerPosts.get('/', (req, res) => {
     });
 });
 
-//INDEX path for previous number
+//INDEX path for previous posts, starting at num parameter
+//Returns results from Newest to Oldest
 routerPosts.get('/previous/:num', (req, res) => {
     const paramNum = parseInt(req.params.num);
     if (paramNum < 1)
@@ -129,6 +130,7 @@ routerPosts.get('/user/:poster', (req, res) => {
             console.log(err);
         else {
             res.render('posts/index.ejs', {
+                startIndex: 0,
                 poster: req.params.poster,
                 posts: postsData,
                 currentUser: req.session.currentUser,
@@ -137,6 +139,30 @@ routerPosts.get('/user/:poster', (req, res) => {
             });
         }
     });
+});
+
+//INDEX path for previous posts, starting at num parameter
+//Returns results from Newest to Oldest
+routerPosts.get('/user/:poster/previous/:num', (req, res) => {
+    const paramNum = parseInt(req.params.num);
+    if (paramNum < 1)
+        res.redirect(`/catspotting/user/${req.params.poster}`);
+    else {
+        Posts.find({poster: req.params.poster}, null, {sort: {createdAt: -1}}, (err, postsData) => {
+            if (err)
+                console.log(err);
+            else {
+                res.render('posts/index.ejs', {
+                    startIndex: paramNum,
+                    poster: req.params.poster,
+                    posts: postsData,
+                    currentUser: req.session.currentUser,
+                    days: days,
+                    months: months
+                });
+            }
+        });
+    }
 });
 
 //NEW path - creates a new post
