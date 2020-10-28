@@ -15,7 +15,7 @@ const postSchema = new mongoose.Schema({
     comments: [{
         text: {type: String, required: true},
         user: {type: String, required: true}
-    }]
+    }, {timestamps: true}]
 }, {timestamps: true});
 
 module.exports = mongoose.model('Post', postSchema);

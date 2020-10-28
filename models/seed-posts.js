@@ -11,7 +11,17 @@ module.exports = [
         img: "../img/cat1.jpg",
         poster: "Henry",
         latitude: null,
-        longitude: null
+        longitude: null,
+        comments: [
+            {
+                text: "Love this cat!",
+                user: "Maarvi"
+            },
+            {
+                text: "Hair looks like ramen",
+                user: "Anosha"
+            },
+        ]
     },
     {
         title: "Bodega Beer Cat",
@@ -29,7 +39,17 @@ module.exports = [
         img: "../img/cat3.jpg",
         poster: "Maarvi",
         latitude: null,
-        longitude: null
+        longitude: null,
+        comments: [
+            {
+                text: "I remember this guy",
+                user: "Henry"
+            },
+            {
+                text: "Kind of miss him",
+                user: "Maarvi"
+            },
+        ]
     },
     {
         title: "On the prowl",
