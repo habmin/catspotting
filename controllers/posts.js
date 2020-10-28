@@ -134,7 +134,6 @@ routerPosts.post('/:id', (req, res) => {
         text: req.body.text,
         user: `${req.session.currentUser.username}`
     };
-    console.log(newComment);
     Posts.findByIdAndUpdate(req.params.id, { $push: {comments: newComment} }, {new: true}, (err, postData) => {
         if (err)
             console.log(err);

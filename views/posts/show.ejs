@@ -26,11 +26,13 @@
             <p class="comment-text"><%= comment.text %></p>
         </div>
     <% } %>
-    <form id="make-comment" action="/catspotting/<%= post._id %>" method="POST">
-        <label for="text">Comment</label>
-        <textarea id="make-text" name="text"></textarea>
-        <button id="comment-button" type="submit">Post Comment</button>
-    </form>
+    <% if (currentUser) { %>
+        <form id="make-comment" action="/catspotting/<%= post._id %>" method="POST">
+            <label for="text">Make A Comment</label>
+            <textarea id="make-text" name="text"></textarea>
+            <button id="comment-button" type="submit">Post Comment</button>
+        </form>
+    <% } %>
     <a class="go-back" href="/catspotting">Go Back</a>
 </div>
 <% if (post.latitude !== null && post.longitude !== null && post.location !== "Unlisted") { %>
