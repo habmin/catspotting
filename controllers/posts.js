@@ -54,7 +54,7 @@ routerPosts.get('/clear', (req, res) => {
     res.send("Database cleared");
 });
 
-//INDEX path
+//INDEX path for all posts
 routerPosts.get('/', (req, res) => {
     Posts.find({}, (err, postsData) => {
         if (err)
@@ -78,7 +78,22 @@ routerPosts.get('/map', (req, res) => {
         else {
             res.render('posts/map.ejs', {
                 posts: postsData,
-                API_KEY: process.env.API_KEY,
+                currentUser: req.session.currentUser,
+                API_KEY: process.env.API_KEY
+            });
+        }
+    });
+});
+
+//INDEX path for User
+routerPosts.get('/user/:poster', (req, res) => {
+    Posts.find({poster: req.params.poster}, (err, postsData) => {
+        if (err)
+            console.log(err);
+        else {
+            res.render('posts/user.ejs', {
+                poster: req.params.poster,
+                posts: postsData,
                 currentUser: req.session.currentUser,
                 days: days,
                 months: months

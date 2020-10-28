@@ -56,7 +56,9 @@ usersRouter.get('/new', (req, res) => {
 //Post Method
 usersRouter.post('/', (req, res) => {
     Users.find({username: `${req.body.username}`}, (err, results) => {
-        if (results.length)
+        if (err)
+            console.log(err);
+        else if (results.length)
             res.send('Username already taken');
         else {
             req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10))

@@ -4,13 +4,16 @@
     <h2 class="post-title"><%=post.title %></h2>
     <h4>Spotted by <%= post.poster %> on <%= days[post.createdAt.getUTCDay()] %> <%= months[post.createdAt.getUTCMonth()] %> 
         <%= post.createdAt.getUTCDate() %> <%= post.createdAt.getUTCFullYear() %> 
-        <%= post.createdAt.getUTCHours() - (post.createdAt.getTimezoneOffset() / 60) %>:<%= post.createdAt.getUTCMinutes() %></h4>
+        <%= post.createdAt.getUTCHours() - (post.createdAt.getTimezoneOffset() / 60) %>:<%= post.createdAt.getUTCMinutes().toString(10).padStart(2, '0') %></h4>
     <img class="full-cat" src="<%= post.img %>"/>
     <p class="description"><%= post.description %></p>
     <% if (post.latitude !== null && post.longitude !== null && post.location !== "Unlisted") { %>
         <div id="show-map"></div>
     <% } %>
     <h3>Spotted in <%= post.location %></h3>
+    <h2>Comments</h2>
+    <% for (const comment of post.comments) { $>
+        
     <% if (currentUser && currentUser.username === post.poster) { %>
         <div class="modify-buttons">
             <a href="/catspotting/<%= post._id %>/edit"><button type="button">Edit Post</button></a>
@@ -21,7 +24,7 @@
     <% } %>
     <a class="go-back" href="/catspotting">Go Back</a>
 </div>
-
+<% if (post.latitude !== null && post.longitude !== null && post.location !== "Unlisted") { %>
 <script type="text/javascript">
     function showMap() {
         //Google Map initializer
@@ -39,5 +42,6 @@
 </script>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= API_KEY %>&callback=showMap"></script>
+<% } %>
 
 <%- include('../partials/footer.ejs') %>

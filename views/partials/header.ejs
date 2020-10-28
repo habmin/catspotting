@@ -22,7 +22,7 @@
                 <div class="drop-menu">
                     <h3><span class="drop-arrow">▸</span>Welcome <%= currentUser.username %>!</h3>
                     <div class="menu-contents">
-                        <a href="/catspotting">Profile</a>
+                        <a href="/catspotting/user/<%= currentUser.username %>"><button type="button'">Profile</button></a>
                         <a href="/catspotting/map"><button type="button'">View Map</button></a>
                         <a href="/catspotting/new"><button type="button'">New Post</button></a>
                         <form action="/sessions?_method=DELETE" method="POST">
