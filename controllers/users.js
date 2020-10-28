@@ -6,9 +6,6 @@
 const express = require('express');
 const usersRouter = express.Router();
 
-//Initialize mongoose
-const mongoose = require('mongoose');
-
 //Initialize bCrypt
 const bcrypt = require('bcrypt');
 

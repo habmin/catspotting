@@ -3,7 +3,7 @@
 ****************************************/
 
 /*
-Creates two listeners:
+Creates three listeners:
 
 1. Listens to a click on a map, places a marker where user clicks, and returns 
 co-ordinates and reverse geocode location to respective form fields
@@ -11,6 +11,9 @@ co-ordinates and reverse geocode location to respective form fields
 2. Geocode submit listener on "Place Pin" button, takes the string value
 and places a marker on first geocode result, returns co-ordinates to 
 their respective form fields
+
+3. A clear location and geo co-ordinates buttons. Will clear the location field,
+co-ordinates field, and marker on the map
 */
 
 function mapListeners(map, marker) {
@@ -68,5 +71,13 @@ function mapListeners(map, marker) {
             else
                 console.log(status);
         });
+    });
+
+    //***Clear location/coordinates listener***
+    document.getElementById('address-clear').addEventListener('click', () => {
+        document.getElementById('location').value = "";
+        latDisplay.value = "";
+        lngDisplay.value = "";
+        marker.setMap(null);
     });
 };
