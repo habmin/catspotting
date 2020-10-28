@@ -201,6 +201,14 @@ a:active {
     padding: 0;
 }
 
+a .commenter{
+    color:#BC6C25;
+}
+
+a .commenter:hover{
+    text-decoration: underline;
+}
+
 .comment-text{
     margin: 0;
     padding: 0;
@@ -215,4 +223,8 @@ a:active {
 
 #make-comment textarea{
     font-family: inherit;
+}
+
+.post-comments {
+    float: left;
 }

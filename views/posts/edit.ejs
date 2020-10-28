@@ -33,10 +33,19 @@
 <script type="text/javascript">
     function showMap() {
         //Google Map initializer
-        const myLatlng = { lat: <%= post.latitude %>, lng: <%= post.longitude %> };
+        let myLatlng;
+        let initialZoom;
+        if ($('#lat').attr('value') === "") {
+            myLatlng = { lat: 39.34, lng: -99.14 };
+            initialZoom = 3;
+        }
+        else {
+            myLatlng = { lat: parseFloat($('#lat').attr('value')), lng: parseFloat($('#lng').attr('value')) };
+            initialZoom = 14;
+        }
         const map = new google.maps.Map(document.getElementById("map"), {
             gestureHandling: "greedy",
-            zoom: 13,
+            zoom: initialZoom,
             center: myLatlng
         });
         let marker = new google.maps.Marker({

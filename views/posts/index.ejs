@@ -6,10 +6,9 @@
         <div class="post">
             <img class="post-cat" src="<%= post.img %>"/>
             <a class="post-link" href="/catspotting/<%= post._id %>"><h2 class="post-title"><%=post.title %></h2>
-            <h3>Spotted in <%= post.location %> by <%= post.poster %></h3></a>
-            <p class="post-date"><%= months[post.createdAt.getUTCMonth()] %> 
-                <%= post.createdAt.getUTCDate() %> <%= post.createdAt.getUTCFullYear() %></p>
-        </div>
+            <h3>Spotted in <%= post.location %> by <%= post.poster %></h3>
+            <p class="post-date"><span class="post-comments">Comments: <%= post.comments.length %></span><%= months[post.createdAt.getUTCMonth()] %> 
+                <%= post.createdAt.getUTCDate() %> <%= post.createdAt.getUTCFullYear() %></p></a>        </div>
     <% } %>
 </div>
 

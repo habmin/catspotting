@@ -22,7 +22,7 @@
     <h2>Comments</h2>
     <% for (const comment of post.comments) { %>
         <div class="comment">
-            <h4 class="commenter"><%= comment.user %></h4>
+            <a href="/catspotting/user/<%= comment.user %>"><h4 class="commenter"><%= comment.user %></h4></a>
             <p class="comment-text"><%= comment.text %></p>
         </div>
     <% } %>

@@ -10,8 +10,8 @@ module.exports = [
         location: "Bushwick, NY",
         img: "https://cat-spotting.herokuapp.com/img/cat1.jpg",
         poster: "Henry",
-        latitude: null,
-        longitude: null,
+        latitude: 40.6957755,
+        longitude: -73.9170604,
         comments: [
             {
                 text: "Love this cat!",
@@ -29,8 +29,8 @@ module.exports = [
         location: "Lower East Side, NY",
         img: "https://cat-spotting.herokuapp.com/img/cat2.jpg",
         poster: "Henry",
-        latitude: null,
-        longitude: null
+        latitude: 40.715033,
+        longitude: -73.9842724
     },
     {
         title: "Just chillin",
@@ -38,8 +38,8 @@ module.exports = [
         location: "Portland",
         img: "https://cat-spotting.herokuapp.com/img/cat3.jpg",
         poster: "Maarvi",
-        latitude: null,
-        longitude: null,
+        latitude: 45.5051064,
+        longitude: -122.6750261,
         comments: [
             {
                 text: "I remember this guy",
@@ -57,8 +57,8 @@ module.exports = [
         location: "New Jersey",
         img: "https://cat-spotting.herokuapp.com/img/cat4.jpg",
         poster: "Maarvi",
-        latitude: null,
-        longitude: null
+        latitude: 40.99539423249059,
+        longitude: -74.25954922331373
     },
     {
         title: "Stairwell Kitten",
@@ -66,7 +66,7 @@ module.exports = [
         location: "Flatbush, NY",
         img: "https://cat-spotting.herokuapp.com/img/cat5.jpg",
         poster: "Anosha",
-        latitude: null,
-        longitude: null
+        latitude: 40.65481114941911,
+        longitude: -73.95542325730048
     }
 ];
