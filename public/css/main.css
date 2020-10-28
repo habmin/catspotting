@@ -184,13 +184,19 @@ a:active {
     display: flex;
 }
 
-.ui-accordion-header {
-
-}
-
 .ui-accordion-content {
     box-shadow: 1px 10px 20px #6d6d6d;
     margin: 0;
     padding: 0;
     background-color: #DDA15E;
+}
+
+.commenter {
+    margin: 0;
+    padding: 0;
+}
+
+.comment-text{
+    margin: 0;
+    padding: 0;
 }

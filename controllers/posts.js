@@ -128,6 +128,22 @@ routerPosts.post('/', (req, res) => {
     res.redirect('/catspotting');
 });
 
+//POST method for comments
+routerPosts.post('/:id', (req, res) => {
+    let newComment = {
+        text: req.body.text,
+        user: `${req.session.currentUser.username}`
+    };
+    console.log(newComment);
+    Posts.findByIdAndUpdate(req.params.id, { $push: {comments: newComment} }, {new: true}, (err, postData) => {
+        if (err)
+            console.log(err);
+        else
+            console.log(`${postData.comments} has been updated`);
+    });
+    res.redirect(`/catspotting/${req.params.id}`);
+});
+
 //SHOW path
 routerPosts.get('/:id', (req, res) => {
     Posts.findById(req.params.id, (err, postData) => {

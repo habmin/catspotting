@@ -11,11 +11,6 @@
         <div id="show-map"></div>
     <% } %>
     <h3>Spotted in <%= post.location %></h3>
-    <h2>Comments</h2>
-    <% for (const comment of post.comments) { %>
-        <h5><%= comment.user %></h5>
-        <p><%= comment.text %></p>
-    <% } %>
     <% if (currentUser && currentUser.username === post.poster) { %>
         <div class="modify-buttons">
             <a href="/catspotting/<%= post._id %>/edit"><button type="button">Edit Post</button></a>
@@ -24,6 +19,18 @@
             </form>
         </div>
     <% } %>
+    <h2>Comments</h2>
+    <% for (const comment of post.comments) { %>
+        <div class="comment">
+            <h4 class="commenter"><%= comment.user %></h4>
+            <p class="comment-text"><%= comment.text %></p>
+        </div>
+    <% } %>
+    <form id="make-comment" action="/catspotting/<%= post._id %>" method="POST">
+        <label for="text">Comment</label>
+        <textarea id="make-text" name="text"></textarea>
+        <button id="comment-button" type="submit">Post Comment</button>
+    </form>
     <a class="go-back" href="/catspotting">Go Back</a>
 </div>
 <% if (post.latitude !== null && post.longitude !== null && post.location !== "Unlisted") { %>

@@ -13,9 +13,9 @@ const postSchema = new mongoose.Schema({
     latitude: Number,
     longitude: Number,
     comments: [{
-        text: {type: String, required: true},
-        user: {type: String, required: true}
-    }, {timestamps: true}]
+        text: String,
+        user: String
+    }]
 }, {timestamps: true});
 
 module.exports = mongoose.model('Post', postSchema);
