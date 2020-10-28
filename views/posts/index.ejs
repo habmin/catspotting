@@ -17,30 +17,36 @@
                 <%= posts[i].createdAt.getUTCDate() %> <%= posts[i].createdAt.getUTCFullYear() %></p></a>
         </div>
     <% } %>
+    <!-- Navigation for next/previous 5 based on if on INDEX or USER path -->
+    <div id="post-navi">
+        <!-- if on regular index path -->
+        <% if (poster === undefined) { %>
+            <!-- If there are posts beyond the initial index + 5, add link to prev 5-->
+            <% if (posts.length - (startIndex + 5) > 0) { %>
+                <a href="/catspotting/previous/<%= startIndex + 5 %>">
+                    <button>◀ Previous 5</button>
+                </a>
+            <% } %>
+            <!-- If there are posts behind the initial index, add link to next 5-->
+            <% if (startIndex > 0 && posts.length > 0) { %>
+                <a href="/catspotting/previous/<%= startIndex - 5 %>">
+                    <button>Next 5 ▶</button>
+                </a>
+            <% } %>
+        <!-- if on a specific user index -->
+        <% } else { %>
+            <% if (posts.length - (startIndex + 5) > 0) { %>
+                <a href="/catspotting/user/<%= poster %>/previous/<%= startIndex + 5 %>">
+                    <button>◀ Previous 5</button>
+                </a>
+            <% } %>
+            <% if (startIndex > 0 && posts.length > 0) { %>
+                <a href="/catspotting/user/<%= poster %>/previous/<%= startIndex - 5 %>">
+                    <button>Next 5 ▶</button>
+                </a>
+            <% } %>
+        <% } %>
+    </div>
 </div>
-
-<!-- Navigation for next/previous 5 based on if on INDEX or USER path -->
-
-<% if (poster === undefined) { %>
-    <!-- If there are posts beyond the initial index + 5, add link to prev 5-->
-    <% if (posts.length - (startIndex + 5) > 0) { %>
-        <a href="/catspotting/previous/<%= startIndex + 5 %>">Previous 5</a>
-    <% } %>
-
-    <!-- If there are posts behind the initial index, add link to next 5-->
-    <% if (startIndex > 0 && posts.length > 0) { %>
-        <a href="/catspotting/previous/<%= startIndex - 5 %>">Next 5</a>
-    <% } %>
-<% } else { %>
-    <!-- If there are posts beyond the initial index + 5, add link to prev 5-->
-    <% if (posts.length - (startIndex + 5) > 0) { %>
-        <a href="/catspotting/user/<%= poster %>/previous/<%= startIndex + 5 %>">Previous 5</a>
-    <% } %>
-
-    <!-- If there are posts behind the initial index, add link to next 5-->
-    <% if (startIndex > 0 && posts.length > 0) { %>
-        <a href="/catspotting/user/<%= poster %>/previous/<%= startIndex - 5 %>">Next 5</a>
-    <% } %>
-<% } %>
 
 <%- include('../partials/footer.ejs') %>

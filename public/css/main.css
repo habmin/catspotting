@@ -116,7 +116,7 @@ fieldset {
 }
 
 .ui-accordion-content {
-    box-shadow: 1px 10px 20px #6d6d6d;
+    box-shadow: 1px 10px 20px rgba(70, 70, 70, .5);
     margin: 0;
     padding: 0;
     background-color: #DDA15E;
@@ -137,6 +137,7 @@ fieldset {
     margin: 0 auto;
     display: flex;
     flex-direction: column;
+    align-items: center;
     text-align: center;
 }
 
@@ -152,6 +153,18 @@ fieldset {
 
 .post-comments {
     float: left;
+}
+
+#post-navi {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 800px;
+}
+#post-navi button {
+    font-size: 20px;
+    padding: 5px 15px 5px 15px;
+    color: #BC6C25,
 }
 
 /**************************************
