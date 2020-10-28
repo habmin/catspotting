@@ -1,6 +1,12 @@
 <%- include('../partials/header.ejs') %>
 
-<h1 id="feed-title">All Posts</h1>
+<% if (poster === undefined) { %>
+    <!-- Shows all posts in a database -->
+    <h1 id="feed-title">All Posts</h1>
+<% } else { %>
+    <!-- Shows all post by a certain user -->
+    <h1 id="feed-title"><%= poster %>'s Posts</h1>
+<% } %>
 <div id="feed">
     <% for (const post of posts) { %>
         <div class="post">

@@ -71,6 +71,7 @@ routerPosts.get('/', (req, res) => {
             console.log(err);
         else {
             res.render('posts/index.ejs', {
+                poster: undefined,
                 posts: postsData,
                 currentUser: req.session.currentUser,
                 days: days,
@@ -101,7 +102,7 @@ routerPosts.get('/user/:poster', (req, res) => {
         if (err)
             console.log(err);
         else {
-            res.render('posts/user.ejs', {
+            res.render('posts/index.ejs', {
                 poster: req.params.poster,
                 posts: postsData,
                 currentUser: req.session.currentUser,

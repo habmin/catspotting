@@ -1,3 +1,4 @@
+<!-- Start of header.ejs -->
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,8 +22,12 @@
         <script type="text/javascript" src="/js/posts/header.js" charset="utf-8"></script>
     </head>
     <body>
+        <!-- Background filter -->
         <div id="filter"></div>
+        
         <a href="/catspotting"><h1 id="title">Catspotting</h1></a>
+        
+        <!-- Different drop-menu based if a user is signed on or not -->
         <nav>
             <% if (currentUser) { %>
                 <div class="drop-menu">
@@ -47,3 +52,5 @@
                 </div>
             <% } %>
         </nav>
+
+<!-- End of header.ejs -->

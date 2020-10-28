@@ -2,18 +2,25 @@
 
 <div class="post">
     <h2 class="post-title"><%=post.title %></h2>
+    
+    <!-- Prints a more user friendly date and time of post creation -->
     <h4>Spotted by <a id="poster-link" href="/catspotting/user/<%= post.poster %>"><%= post.poster %></a> on <%= days[post.createdAt.getUTCDay()] %> <%= months[post.createdAt.getUTCMonth()] %> 
         <%= post.createdAt.getUTCDate() %> <%= post.createdAt.getUTCFullYear() %> 
         <%= post.createdAt.getUTCHours() - (post.createdAt.getTimezoneOffset() / 60) %>:<%= post.createdAt.getUTCMinutes().toString(10).padStart(2, '0') %></h4>
+    
     <img class="full-cat" src="<%= post.img %>"/>
     <p class="description"><%= post.description %></p>
+    
+    <!-- Creates a map div only if post has lat, long, and location data -->
     <% if (post.latitude !== null && post.longitude !== null && post.location !== "Unlisted") { %>
         <div id="show-map"></div>
     <% } %>
+    
     <h3>Spotted in <%= post.location %></h3>
     <% if (currentUser && currentUser.username === post.poster) { %>
         <div class="modify-buttons">
             <a href="/catspotting/<%= post._id %>/edit"><button type="button">Edit Post</button></a>
+            <!-- Prompts for user to confirm post deletion via popup -->
             <form id="delete-form" action="/catspotting/<%= post._id %>?_method=DELETE" method="POST"
                  onsubmit="return confirm('Are you sure you want to delete? This cannot be undone')">
                 <button id="delete-button" type="submit">Delete Post</button>
@@ -27,6 +34,8 @@
             <p class="comment-text"><%= comment.text %></p>
         </div>
     <% } %>
+    
+    <!-- Only shows ability to make a comment if user is signed in -->
     <% if (currentUser) { %>
         <form id="make-comment" action="/catspotting/<%= post._id %>" method="POST">
             <label for="text">Make A Comment</label>
@@ -36,6 +45,9 @@
     <% } %>
     <a class="go-back" href="/catspotting">Go Back</a>
 </div>
+
+<!-- Google Maps API JS Functions and Callback
+     generated only if post has lat and long data-->
 <% if (post.latitude !== null && post.longitude !== null && post.location !== "Unlisted") { %>
     <div id="hidden" lat="<%= post.latitude %>" lng="<%= post.longitude %>"></div>
     <script type="text/javascript" src="/js/posts/gmap-inits.js"></script>
