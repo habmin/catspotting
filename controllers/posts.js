@@ -34,7 +34,7 @@ const isSignedIn = (req, res, next) => {
 //Seed Path - creates 5 sample posts
 //admin privileges only
 routerPosts.get('/seed', (req, res) => {
-    if (req.session.currentUser !== "admin")
+    if (req.session.currentUser.username !== "admin")
         res.send("Unauthorized access");
     else {
         Posts.create(seed, (err, data) => {
@@ -65,12 +65,14 @@ routerPosts.get('/clear', (req, res) => {
 });
 
 //INDEX path for all posts
+//Returns results from Newest to Oldest
 routerPosts.get('/', (req, res) => {
-    Posts.find({}, (err, postsData) => {
+    Posts.find({}, null, {sort: {createdAt: -1}}, (err, postsData) => {
         if (err)
             console.log(err);
         else {
             res.render('posts/index.ejs', {
+                startIndex: 0,
                 poster: undefined,
                 posts: postsData,
                 currentUser: req.session.currentUser,
@@ -79,6 +81,29 @@ routerPosts.get('/', (req, res) => {
             });
         }
     });
+});
+
+//INDEX path for previous number
+routerPosts.get('/previous/:num', (req, res) => {
+    const paramNum = parseInt(req.params.num);
+    if (paramNum < 1)
+        res.redirect('/catspotting');
+    else {
+        Posts.find({}, null, {sort: {createdAt: -1}}, (err, postsData) => {
+            if (err)
+                console.log(err);
+            else {
+                res.render('posts/index.ejs', {
+                    startIndex: paramNum,
+                    poster: undefined,
+                    posts: postsData,
+                    currentUser: req.session.currentUser,
+                    days: days,
+                    months: months
+                });
+            }
+        });
+    }
 });
 
 //INDEX path for maps
@@ -97,8 +122,9 @@ routerPosts.get('/map', (req, res) => {
 });
 
 //INDEX path for User - shows posts only by a poster
+//Returns results from Newest to Oldest
 routerPosts.get('/user/:poster', (req, res) => {
-    Posts.find({poster: req.params.poster}, (err, postsData) => {
+    Posts.find({poster: req.params.poster}, null, {sort: {createdAt: -1}}, (err, postsData) => {
         if (err)
             console.log(err);
         else {

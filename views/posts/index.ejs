@@ -8,14 +8,25 @@
     <h1 id="feed-title"><%= poster %>'s Posts</h1>
 <% } %>
 <div id="feed">
-    <% for (const post of posts) { %>
+    <% for (let i = startIndex; i < posts.length && i < startIndex + 5; i++) { %>
         <div class="post">
-            <img class="post-cat" src="<%= post.img %>"/>
-            <a class="post-link" href="/catspotting/<%= post._id %>"><h2 class="post-title"><%=post.title %></h2>
-            <h3>Spotted in <%= post.location %> by <%= post.poster %></h3>
-            <p class="post-date"><span class="post-comments">Comments: <%= post.comments.length %></span><%= months[post.createdAt.getUTCMonth()] %> 
-                <%= post.createdAt.getUTCDate() %> <%= post.createdAt.getUTCFullYear() %></p></a>        </div>
+            <img class="post-cat" src="<%= posts[i].img %>"/>
+            <a class="post-link" href="/catspotting/<%= posts[i]._id %>"><h2 class="post-title"><%=i + ' of ' + posts.length + posts[i].title %></h2>
+            <h3>Spotted in <%= posts[i].location %> by <%= posts[i].poster %></h3>
+            <p class="post-date"><span class="post-comments">Comments: <%= posts[i].comments.length %></span><%= months[posts[i].createdAt.getUTCMonth()] %> 
+                <%= posts[i].createdAt.getUTCDate() %> <%= posts[i].createdAt.getUTCFullYear() %></p></a>
+        </div>
     <% } %>
 </div>
+
+<!-- If there are posts beyond the initial index + 5, add link to prev 5-->
+<% if (posts.length - (startIndex + 5) > 0) { %>
+    <a href="/catspotting/previous/<%= startIndex + 5 %>">Previous 5</a>
+<% } %>
+
+<!-- If there are posts behind the initial index, add link to next 5-->
+<% if (startIndex > 0 && posts.length > 0) { %>
+    <a href="/catspotting/previous/<%= startIndex - 5 %>">Next 5</a>
+<% } %>
 
 <%- include('../partials/footer.ejs') %>

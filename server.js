@@ -1,6 +1,6 @@
-/*********************
-**** Initializers ****
-*********************/
+/****************************
+**** Server Initializers ****
+****************************/
 
 //Initialize express
 const express = require('express');
@@ -51,16 +51,16 @@ app.use('/users', userController);
 const sessionsController = require('./controllers/sessions.js')
 app.use('/sessions', sessionsController)
 
-/******************
-**** LISTENERS ****
-*******************/
+/*************************
+**** Server Listeners ****
+*************************/
 
-//mongoose listeners
+//mongoose listeners to connect to MongoDb
 mongoose.connection.on('error', (err) => console.log("*** Error connecting to MongoDB ***"));
 mongoose.connection.on('connected', () => console.log("*** MongoDB connected at " + mongoURI + " ***"));
 mongoose.connection.on('disconnected', () => console.log("*** MongoDB disconnected at " + mongoURI + " ***"));
 
-//express listener
+//express listener to open port
 app.listen(port, () => {
     console.log("*** Express server running at localhost:" + port + " ***");
 });
