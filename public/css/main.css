@@ -59,9 +59,9 @@ fieldset {
     margin: 0;
 }
 
-/**********************************
-**** CSS styling in header.ejs ****
-**********************************/
+/****************************************
+**** CSS styling in posts/header.ejs ****
+****************************************/
 
 /* Filters the background */
 #filter {
@@ -122,9 +122,9 @@ fieldset {
     background-color: #DDA15E;
 }
 
-/*********************************
-**** CSS styling in index.ejs ****
-*********************************/
+/***************************************
+**** CSS styling in posts/index.ejs ****
+***************************************/
 
 #feed-title {
     margin: 0;
@@ -154,9 +154,9 @@ fieldset {
     float: left;
 }
 
-/********************************
-**** CSS styling in show.ejs ****
-********************************/
+/**************************************
+**** CSS styling in posts/show.ejs ****
+**************************************/
 
 .full-cat {
     width: 100%;
@@ -216,9 +216,9 @@ fieldset {
     font-family: inherit;
 }
 
-/*******************************
-**** CSS styling in new.ejs ****
-*******************************/
+/*************************************
+**** CSS styling in posts/new.ejs ****
+*************************************/
 
 /* NOTE: google-maps must have height explicitly defined */
 #map {
@@ -227,9 +227,9 @@ fieldset {
 
 }
 
-/*******************************
-**** CSS styling in map.ejs ****
-*******************************/
+/*************************************
+**** CSS styling in posts/map.ejs ****
+*************************************/
 
 /* NOTE: google-maps must have height explicitly defined */
 #full-map {

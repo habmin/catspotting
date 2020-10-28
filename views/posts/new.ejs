@@ -1,7 +1,8 @@
 <%- include('../partials/header.ejs') %>
 
-<script async defer src="/js/placeLocation.js"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= API_KEY %>&callback=initMap"></script>
+<script type="text/javascript" async defer src="/js/posts/gmap-inits.js"></script>
+<script type="text/javascript" async defer src="/js/posts/gmap-listeners.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= API_KEY %>&callback=newMap"></script>
 
 <h1 id="new-title">New Post</h1>
 <form id="new-post" action="/catspotting" method="POST">

@@ -37,23 +37,9 @@
     <a class="go-back" href="/catspotting">Go Back</a>
 </div>
 <% if (post.latitude !== null && post.longitude !== null && post.location !== "Unlisted") { %>
-<script type="text/javascript">
-    function showMap() {
-        //Google Map initializer
-        const myLatlng = { lat: <%= post.latitude %>, lng: <%= post.longitude %> };
-        const map = new google.maps.Map(document.getElementById("show-map"), {
-            gestureHandling: "none",
-            zoom: 13,
-            center: myLatlng
-        });
-        let marker = new google.maps.Marker({
-            position: myLatlng
-        })
-        marker.setMap(map);
-    };
-</script>
-
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= API_KEY %>&callback=showMap"></script>
+    <div id="hidden" lat="<%= post.latitude %>" lng="<%= post.longitude %>"></div>
+    <script type="text/javascript" src="/js/posts/gmap-inits.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%= API_KEY %>&callback=showMap"></script>
 <% } %>
 
 <%- include('../partials/footer.ejs') %>

@@ -1,6 +1,9 @@
 <%- include('../partials/header.ejs') %>
 
-<script src="/js/placeLocation.js"></script>
+<script type="text/javascript" async defer src="/js/posts/gmap-inits.js"></script>
+<script type="text/javascript" async defer src="/js/posts/gmap-listeners.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= API_KEY %>&callback=editMap"></script>
+
 <form id="edit" action="/catspotting/<%= post._id %>?_method=PUT" method="POST">
     <fieldset>
         <label for="title">Title</label>
@@ -29,33 +32,5 @@
         <a class="go-back" href="/catspotting/<%= post._id %>">Go Back</a>
     </div>
 </form>
-
-<script type="text/javascript">
-    function showMap() {
-        //Google Map initializer
-        let myLatlng;
-        let initialZoom;
-        if ($('#lat').attr('value') === "") {
-            myLatlng = { lat: 39.34, lng: -99.14 };
-            initialZoom = 3;
-        }
-        else {
-            myLatlng = { lat: parseFloat($('#lat').attr('value')), lng: parseFloat($('#lng').attr('value')) };
-            initialZoom = 14;
-        }
-        const map = new google.maps.Map(document.getElementById("map"), {
-            gestureHandling: "greedy",
-            zoom: initialZoom,
-            center: myLatlng
-        });
-        let marker = new google.maps.Marker({
-            position: myLatlng
-        })
-        marker.setMap(map);
-        mapListeners(map, marker);
-    };
-</script>
-
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= API_KEY %>&callback=showMap"></script>
 
 <%- include('../partials/footer.ejs') %>
