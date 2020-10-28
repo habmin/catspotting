@@ -78,6 +78,7 @@ routerPosts.get('/map', (req, res) => {
         else {
             res.render('posts/map.ejs', {
                 posts: postsData,
+                API_KEY: process.env.API_KEY,
                 currentUser: req.session.currentUser,
                 days: days,
                 months: months

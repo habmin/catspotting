@@ -1,17 +1,43 @@
 <%- include('../partials/header.ejs') %>
     <div id="full-map"></div>
+    <% for (const post of posts) {
+        if (post.latitude !== null && post.longitude !== null) { %>
+            <div class="locations" id="<%= post._id %>" title="<%= post.title %>" img="<%= post.img %>" lat="<%= post.latitude %>" lng="<%= post.longitude %>"></div>
+        <% }
+    } %>
     <script type="text/javascript">
         function fullMap() {
             //Google Map initializer
+            const myLatlng = { lat: 39.34, lng: -99.14 };
             const map = new google.maps.Map(document.getElementById("full-map"), {
-                zoom: 6,
+                gestureHandling: "greedy",
+                zoom: 3,
                 center: myLatlng
             });
-            let marker = new google.maps.Marker({
-                position: myLatlng
-            })
-            marker.setMap(map);
-            const geocoder = new google.maps.Geocoder();
-        };        
+            let infoWindow = new google.maps.InfoWindow();
+            let bounds = new google.maps.LatLngBounds();
+            let $newMarkers = $('.locations');
+            for (let i = 0; i < $newMarkers.length; i++) {
+                let marker = new google.maps.Marker({
+                    position: {lat: parseFloat($($newMarkers[i]).attr('lat')), lng: parseFloat($($newMarkers[i]).attr('lng'))},
+                });
+                marker.setTitle($($newMarkers[i]).attr('id'));
+                bounds.extend(marker.getPosition());
+                google.maps.event.addListener(marker, 'click', () => {
+                    infoWindow.close();
+                    console.log(marker.getTitle());
+                    infoWindow = new google.maps.InfoWindow({
+                        maxWidth: 300,
+                        content: `<a href="/catspotting/${marker.getTitle()}"><h2>${$(`#${marker.getTitle()}`).attr('title')}</h3>
+                                <img class="map-cat" src="${$(`#${marker.getTitle()}`).attr('img')}"/></a>`
+                    });
+                    infoWindow.open(map, marker);
+                });
+                marker.setMap(map);
+            }
+            map.fitBounds(bounds);
+        };
+
     </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%= API_KEY %>&callback=fullMap"></script>
 <%- include('../partials/footer.ejs') %>

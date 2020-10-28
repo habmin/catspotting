@@ -23,6 +23,7 @@
                     <h3><span class="drop-arrow">▸</span>Welcome <%= currentUser.username %>!</h3>
                     <div class="menu-contents">
                         <a href="/catspotting">Profile</a>
+                        <a href="/catspotting/map"><button type="button'">View Map</button></a>
                         <a href="/catspotting/new"><button type="button'">New Post</button></a>
                         <form action="/sessions?_method=DELETE" method="POST">
                             <button type="submit" value="Log Out">Log Out</button>
@@ -33,6 +34,7 @@
                 <div class="drop-menu">
                     <h3><span class="drop-arrow">▸</span>Welcome Guest!</h3>
                     <div class="menu-contents">
+                        <a href="/catspotting/map"><button type="button'">View Map</button></a>
                         <a href="/users/new"><button type="button">Sign Up</button></a>
                         <a href="/sessions/login"><button type="button">Log In</button></a>
                     </div>  
