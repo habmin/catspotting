@@ -1,9 +1,77 @@
+/***************************
+**** global CSS styling ****
+***************************/
+
 body {
     background-image: url('../img/background-texture.jpg');
     background-attachment: fixed;
     background-position: center;
     margin: 0 auto;
     font-family: 'Corben', cursive;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:active {
+    color: #BC6C25;
+}
+
+.go-back:hover, a h3:hover {
+    text-decoration: underline;
+}
+
+button {
+    border: 5px solid #BC6C25;
+    background-color: #FEFAE0;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 5px;
+    font-family: 'Corben', cursive;
+    cursor: pointer;
+}
+
+fieldset {
+    border: none;
+}
+
+/* Box template for posts and other items */
+.post, #edit, #new-post, #new-users, #new-signin {
+    border: 10px solid #BC6C25;
+    border-radius: 10px;
+    margin: 30px auto;
+    padding: 10px;
+    max-width: 800px;
+    width: 90%;
+    background-color: #FEFAE0;
+}
+
+/*Title template for boxed items*/
+.post-title, #new-title, #signup-title, #login-title {
+    text-align: center;
+    font-family: 'Fugaz One', cursive;
+    font-size: 50px;
+    text-shadow: 4px 4px 0 #FEFAE0,
+                 8px 8px 0 #BC6C25;
+    color: black;
+    margin: 0;
+}
+
+/**********************************
+**** CSS styling in header.ejs ****
+**********************************/
+
+/* Filters the background */
+#filter {
+    background-color: rgba(85, 83, 88, .55);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: -1;
+    left: 0;
+    top: 0;
 }
 
 #title {
@@ -20,105 +88,6 @@ body {
     width: 100%;
 }
 
-.post-title, #new-title, #signup-title, #login-title {
-    text-align: center;
-    font-family: 'Fugaz One', cursive;
-    font-size: 50px;
-    text-shadow: 4px 4px 0 #FEFAE0,
-                 8px 8px 0 #BC6C25;
-    color: black;
-    margin: 0;
-}
-
-#feed-title {
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    color: #FEFAE0;
-}
-
-#submit-post {
-    font-size: 30px;
-    padding: 0 20px 0 20px;
-}
-
-.modify-submit {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-
-a {
-    text-decoration: none;
-}
-
-#filter {
-    background-color: rgba(85, 83, 88, .45);
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    z-index: -1;
-    left: 0;
-    top: 0;
-}
-
-
-/* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-#map {
-    height: 500px;
-    width: 500px;
-
-}
-
-#show-map {
-    height: 250px;
-    width: 550px;
-}
-
-#full-map {
-    height: 700px;
-    width: 100%;
-}
-#full-map a:hover{
-    text-decoration: underline;
-}
-
-#feed {
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-}
-
-.post, #edit, #new-post, #new-users, #new-signin {
-    border: 10px solid #BC6C25;
-    border-radius: 10px;
-    margin: 30px auto;
-    padding: 10px;
-    max-width: 800px;
-    width: 90%;
-    background-color: #FEFAE0;
-}
-
-.post-cat {
-    width: 50%;
-}
-
-.post-date {
-    margin: 0;
-    padding: 0;
-    text-align: right;
-}
-
-.full-cat {
-    width: 100%;
-}
-
-.map-cat {
-    width: 100%;
-}
-
 .drop-menu {
     text-align: left;
     font-family: 'Assistant', sans-serif;
@@ -132,16 +101,6 @@ a {
     z-index: 2;
 }
 
-button {
-    border: 5px solid #BC6C25;
-    background-color: #FEFAE0;
-    border-radius: 10px;
-    padding: 5px;
-    margin: 5px;
-    font-family: 'Corben', cursive;
-    cursor: pointer;
-}
-
 .drop-menu button {
     width: 90%;
 }
@@ -151,37 +110,9 @@ button {
     padding: 0;
 }
 
-fieldset {
-    border: none;
-}
-
 .menu-contents {
     display: flex;
     flex-direction: column;
-}
-
-a h3 {
-    font-size: 20px;
-}
-
-.go-back:hover, a h3:hover {
-    text-decoration: underline;
-}
-
-a {
-    color: inherit;
-}
-
-a:active {
-    color: #BC6C25;
-}
-
-.description {
-    font-size: 20px;
-}
-
-.modify-buttons {
-    display: flex;
 }
 
 .ui-accordion-content {
@@ -191,27 +122,87 @@ a:active {
     background-color: #DDA15E;
 }
 
+/*********************************
+**** CSS styling in index.ejs ****
+*********************************/
+
+#feed-title {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    color: #FEFAE0;
+}
+
+#feed {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.post-cat {
+    width: 50%;
+} 
+
+.post-date {
+    margin: 0;
+    padding: 0;
+    text-align: right;
+}
+
+.post-comments {
+    float: left;
+}
+
+/********************************
+**** CSS styling in show.ejs ****
+********************************/
+
+.full-cat {
+    width: 100%;
+}
+
+.description, a h3 {
+    font-size: 20px;
+}
+
+/* NOTE: google-maps must have height explicitly defined */
+#show-map {
+    height: 250px;
+    width: 550px;
+}
+
+#submit-post {
+    font-size: 30px;
+    padding: 0 20px 0 20px;
+}
+
+.modify-buttons {
+    display: flex;
+}
+
+.modify-submit {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
 .comment {
     border-top: 1px dashed #BC6C25;
     border-bottom: 1px dashed #BC6C25;
 }
 
-.commenter {
+.commenter, .comment-text {
     margin: 0;
     padding: 0;
 }
 
-a .commenter{
+#poster-link, a .commenter{
     color:#BC6C25;
 }
 
-a .commenter:hover{
+#poster-link:hover, a .commenter:hover{
     text-decoration: underline;
-}
-
-.comment-text{
-    margin: 0;
-    padding: 0;
 }
 
 #make-comment{
@@ -225,6 +216,31 @@ a .commenter:hover{
     font-family: inherit;
 }
 
-.post-comments {
-    float: left;
+/*******************************
+**** CSS styling in new.ejs ****
+*******************************/
+
+/* NOTE: google-maps must have height explicitly defined */
+#map {
+    height: 500px;
+    width: 500px;
+
+}
+
+/*******************************
+**** CSS styling in map.ejs ****
+*******************************/
+
+/* NOTE: google-maps must have height explicitly defined */
+#full-map {
+    height: 700px;
+    width: 100%;
+}
+
+#full-map a:hover{
+    text-decoration: underline;
+}
+
+.map-cat {
+    width: 100%;
 }

@@ -15,46 +15,27 @@ const bcrypt = require('bcrypt');
 //Import Users Schema
 const Users = require('../models/users.js');
 
-//Import seed data
-const seed = require('../models/seed-users.js');
+/******************************
+**** Users Paths & Methods ****
+******************************/
 
-/********************
-**** Users Paths ****
-********************/
-
-//Seed Path
-usersRouter.get('/seed', (req, res) => {
-    Users.create(seed, (err, data) => {
-        if (err)
-            console.log(err);
-        else
-            console.log(data);
-    });
-    res.send(`Seed documents added to 'users'`);
-});
-
-//Clear database path
-usersRouter.get('/clear', (req, res) => {
-    mongoose.connection.db.dropCollection('users');
-    Users.countDocuments({}, (err, data) => {
-        if (err)
-            console.log(err);
-        else 
-            console.log(`There are ${data} documents in collection 'users'`);
-    });
-    res.send("Database cleared");
-});
-
-//NEW Path
+//NEW Path - creates a new user
 usersRouter.get('/new', (req, res) => {
+    //Must be signed out before creating a new user
     if (req.session.currentUser)
         res.send('Please sign out before creating a new user');
     else
         res.render('users/new.ejs', {currentUser: req.session.currentUser});
 });
 
-//Post Method
+//POST Method
 usersRouter.post('/', (req, res) => {
+    //does a case INsensitive search of user database to see if there are any matches
+    //if there are any results, it is considered username is taken
+    //Why did I do this? My logic is having that have the same name but display
+    //differently would be annoying and confusing for users (Henry, henry, hEnry, henRY)
+    //but thought users will still want to display their name specifically
+    //(for those who like to make names like XoXoBaBExOxO)
     Users.find({username: `${req.body.username}`}, (err, results) => {
         if (err)
             console.log(err);
@@ -74,4 +55,6 @@ usersRouter.post('/', (req, res) => {
     }).collation({locale: 'en', strength: 2});
 });
 
+
+//Export router for server.js
 module.exports = usersRouter;

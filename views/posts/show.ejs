@@ -2,7 +2,7 @@
 
 <div class="post">
     <h2 class="post-title"><%=post.title %></h2>
-    <h4>Spotted by <%= post.poster %> on <%= days[post.createdAt.getUTCDay()] %> <%= months[post.createdAt.getUTCMonth()] %> 
+    <h4>Spotted by <a id="poster-link" href="/catspotting/user/<%= post.poster %>"><%= post.poster %></a> on <%= days[post.createdAt.getUTCDay()] %> <%= months[post.createdAt.getUTCMonth()] %> 
         <%= post.createdAt.getUTCDate() %> <%= post.createdAt.getUTCFullYear() %> 
         <%= post.createdAt.getUTCHours() - (post.createdAt.getTimezoneOffset() / 60) %>:<%= post.createdAt.getUTCMinutes().toString(10).padStart(2, '0') %></h4>
     <img class="full-cat" src="<%= post.img %>"/>
@@ -14,7 +14,8 @@
     <% if (currentUser && currentUser.username === post.poster) { %>
         <div class="modify-buttons">
             <a href="/catspotting/<%= post._id %>/edit"><button type="button">Edit Post</button></a>
-            <form id="delete-form" action="/catspotting/<%= post._id %>?_method=DELETE" method="POST" onsubmit="return confirm('Are you sure you want to delete? This cannot be undone')">
+            <form id="delete-form" action="/catspotting/<%= post._id %>?_method=DELETE" method="POST"
+                 onsubmit="return confirm('Are you sure you want to delete? This cannot be undone')">
                 <button id="delete-button" type="submit">Delete Post</button>
             </form>
         </div>

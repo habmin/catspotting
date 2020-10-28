@@ -2,7 +2,7 @@
 **** Cat Spotting Post Seed ****
 *******************************/
 
-//Provided 5 complete posts for database
+//Provides 5 posts for database, some with full data, some without
 module.exports = [
     {
         title: "I guess he was thirsty",
@@ -66,7 +66,7 @@ module.exports = [
         location: "Flatbush, NY",
         img: "https://cat-spotting.herokuapp.com/img/cat5.jpg",
         poster: "Anosha",
-        latitude: 40.65481114941911,
-        longitude: -73.95542325730048
+        latitude: null,
+        longitude: null
     }
 ];
