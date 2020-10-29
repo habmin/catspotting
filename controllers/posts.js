@@ -50,7 +50,7 @@ routerPosts.get('/seed', (req, res) => {
 //Clear database path - clears all posts
 //admin privileges only
 routerPosts.get('/clear', (req, res) => {
-    if (req.session.currentUser !== "admin")
+    if (req.session.currentUser.username !== "admin")
         res.send("Unauthorized access");
     else {
         mongoose.connection.db.dropCollection('posts');
