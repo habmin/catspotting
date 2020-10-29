@@ -1,9 +1,5 @@
 <%- include('../partials/header.ejs') %>
 
-<!-- Google Maps API JS Functions and Callback -->
-<script type="text/javascript" async defer src="/js/posts/gmap-inits.js"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= API_KEY %>&callback=fullMap"></script>
-
 <div id="full-map"></div>
 <!-- Loop to create invisible div containers with lat and lng attributes
      this is done so the API can generate the map client side  -->
@@ -12,5 +8,13 @@
         <div class="locations" id="<%= post._id %>" title="<%= post.title %>" img="<%= post.img %>" lat="<%= post.latitude %>" lng="<%= post.longitude %>"></div>
     <% }
 } %>
+
+<!-- Google Maps API JS Functions and Callback -->
+<!-- Chrome sometimes wouldn't load the map, possibly because it loaded the
+call back script before loading the js-code, so i put the script tags
+at the bottom of the body -->
+<script type="text/javascript" src="/js/posts/gmap-inits.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= API_KEY %>&callback=fullMap"></script>
+
 
 <%- include('../partials/footer.ejs') %>
