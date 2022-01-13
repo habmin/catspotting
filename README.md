@@ -3,11 +3,19 @@
 ### https://cat-spotting.herokuapp.com/catspotting/
 
 ## Screenshots
-<pre display="inline-block">
-    <img src="01-main.png" height="400"/>
-    <img src="01-main.png" height="400"/>
-</pre>
-### Main
+Main Index
+
+![Main Index](01-main.png)
+
+<details>
+    <summary>More Screenshots</summary>
+    <p>New Post</p>
+    <img src="02-new.png">
+    <p>Post with Comments</p>
+    <img src="03-post.png">
+    <p>World Map</p>
+    <img src="04-map.png">
+</details>
 
 ## Project Overview
 In this second GA SEI project, we were assigned to create a full CRUD web application for users, creating both the front-end for users to interact with, as well the back-end to store our data. What this webapp could be would be entirely up to us. As I was trying to come up with an idea or theme to apply what we learned this section, I was scrolling through my phone’s pictures I’ve taken during quarantine, which were mostly random animals that would cross my path on my daily, mandated walks.  After seeing most of them were cats, I decided why not make it a website where users can post their own random encounters spotting cats. Thus, my project was born: catspotting.
