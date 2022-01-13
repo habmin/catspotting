@@ -1,8 +1,16 @@
 # "🐈Catspotting🐈"
 ### *A place to share pictures of cats that have randomly crossed your path*
 ### https://cat-spotting.herokuapp.com/catspotting/
+
+## Screenshots
+<pre display="inline-block">
+    <img src="01-main.png" height="400"/>
+    <img src="01-main.png" height="400"/>
+</pre>
+### Main
+
 ## Project Overview
-In this second GA SEI project, we were assigned to create a full CRUD web application for users, creating both the front-end for users to interact with, as well the back-end to handle the data management. What this application would do and be used for would be entirely up to us. As I was trying to come up with an idea or theme to apply what we learned this section, I was scrolling through my phone’s pictures I’ve taken during quarantine, which were mostly random animals that would cross my path on my daily, mandated walks.  After seeing most of them were cats, I decided why not make it a website where users can post their own random encounters spotting cats. Thus, my project was born: catspotting.
+In this second GA SEI project, we were assigned to create a full CRUD web application for users, creating both the front-end for users to interact with, as well the back-end to store our data. What this webapp could be would be entirely up to us. As I was trying to come up with an idea or theme to apply what we learned this section, I was scrolling through my phone’s pictures I’ve taken during quarantine, which were mostly random animals that would cross my path on my daily, mandated walks.  After seeing most of them were cats, I decided why not make it a website where users can post their own random encounters spotting cats. Thus, my project was born: catspotting.
 
 Starting off the project was pretty straightforward. Users should be able make posts that contained a source path to a picture of a cat, with an optional title, description, and location. So, I first set up my database using MongoDB to create a schema with those properties in mind, then made correlating paths where users could have full CRUD interactivity. I then added user sessions, so only users who are the authors of their own posts could have full CRUD and worked my code to explicitly define those roles. My MVP was practically reached at that point, so I wanted to reach for one of my stretch goals, and I figured adding Google Maps via API would work really well, since after all, this is a site sharing not just what cat you spot but where you did as well.
 
@@ -58,7 +66,7 @@ The wireframe was pretty straight forward and simple, much like the webpage itse
 * No additional installation required
 
 ## Things To Add
-I made an attempt to implement the node.js package Multer, which I would use for users can upload a photo directly to the database, instead of having users provide an external source for the image. I kept getting write permission errors and couldn't get it running, must less upload or delete anything. I decided to drop it to make sure the project was completed and presentable before obsessing over something that may not work.
+I made an attempt to implement the node.js package Multer, which I would use for users can upload a photo directly to the database, instead of having users provide an external source for the image. I kept getting write permission errors and couldn't get it running. I decided to drop it to make sure the project was completed and presentable before obsessing over something that may not work.
 
 If I got uploading photos to work as well, I also wanted to see what would be possible with extracting meta-data from a photo. Since almost all photos are taken via a phone these days, many of them have geo-data attached them. Integrating this data to the map would have been a great feature.
 
