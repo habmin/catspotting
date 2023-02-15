@@ -27,8 +27,8 @@ const mongoose = require('mongoose');
 mongoose.connect(mongoURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useFindAndModify: false,
-    useCreateIndex: true    
+    // useFindAndModify: false,
+    // useCreateIndex: true    
 });
 
 //Initialize and use express-session
