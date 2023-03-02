@@ -1,6 +1,6 @@
 # "🐈Catspotting🐈"
 ### *A place to share pictures of cats that have randomly crossed your path*
-### https://cat-spotting.herokuapp.com/catspotting/
+### https://catspotting.fly.dev/catspotting
 
 ## Screenshots
 Main Index
@@ -50,7 +50,7 @@ The wireframe was pretty straight forward and simple, much like the webpage itse
 
 ## Technologies used
 * MongoDB - Database to store and retrieve posts and user accounts.
-* Heroku - Cloud server to deploy web application
+* fly.io - Cloud server to deploy web application
 * Node.js - Used to build network/web application with JavaScript
 * Node Packages include:
     * express - To run a http server to route paths and send responses
